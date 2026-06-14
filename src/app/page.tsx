@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="space-y-16 py-6 pb-16 max-w-4xl mx-auto animate-fade-in">
+    <div id="about" className="space-y-16 py-6 pb-16 max-w-4xl mx-auto animate-fade-in">
       {/* Hero Header Section */}
       <section className="text-center space-y-6 pt-8">
         <div className="inline-flex items-center space-x-2 bg-blue-50 text-blue-600 border border-blue-100 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
