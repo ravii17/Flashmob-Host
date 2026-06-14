@@ -1,103 +1,135 @@
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import { Sparkles, Calendar, ShieldAlert, Award, Smile, ArrowRight, Activity, MapPin } from 'lucide-react';
 
-export default function Home() {
+export const metadata = {
+  title: 'About FlashMob Connect | Coordinated Spontaneity',
+  description: 'Learn about FlashMob Connect: how we bring communities together through spontaneous surprise public performances and social assemblies.',
+};
+
+export default function AboutPage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="space-y-16 py-6 pb-16 max-w-4xl mx-auto animate-fade-in">
+      {/* Hero Header Section */}
+      <section className="text-center space-y-6 pt-8">
+        <div className="inline-flex items-center space-x-2 bg-blue-50 text-blue-600 border border-blue-100 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+          <Sparkles size={12} className="fill-blue-100 animate-pulse" />
+          <span>Coordinated Spontaneity</span>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-800 tracking-tight leading-none">
+          FlashMob Connect
+        </h1>
+
+        <p className="text-lg sm:text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto font-medium">
+          Bringing spontaneous art, dance, music, and joy to local public spaces. The coordination hub for surprise community actions.
+        </p>
+
+        <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+          <Link
+            href="/events"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3.5 rounded-2xl transition-all duration-200 active:scale-95 shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20 cursor-pointer flex items-center space-x-1.5"
+          >
+            <span>Explore Events Feed</span>
+            <ArrowRight size={16} />
+          </Link>
+          <Link
+            href="/events/create"
+            className="bg-white hover:bg-slate-50 text-slate-700 hover:text-blue-600 font-bold px-8 py-3.5 rounded-2xl transition-all duration-200 active:scale-95 border border-slate-200 shadow-sm cursor-pointer"
+          >
+            Organize a Flashmob
+          </Link>
+        </div>
+      </section>
+
+      {/* Concept Image Block */}
+      <div className="relative h-64 sm:h-96 w-full rounded-3xl overflow-hidden border border-slate-100 shadow-premium bg-slate-100">
+        <img
+          src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=800"
+          alt="Surprise public crowd perform assembly"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>
+      </div>
+
+      {/* What is a Flashmob Section */}
+      <section className="bg-white rounded-3xl border border-slate-100 p-8 sm:p-10 shadow-premium space-y-6">
+        <h2 className="text-2xl font-black text-slate-800 tracking-tight flex items-center space-x-2">
+          <Activity className="text-blue-600" />
+          <span>What is a Flashmob?</span>
+        </h2>
+        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          A flashmob is a group of people who assemble suddenly in a public place, perform an unusual and seemingly pointless act for a brief time, then quickly disperse—often for the purposes of entertainment, satire, and artistic expression.
+        </p>
+        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          Whether it is a frozen statue challenge, a spontaneous musical choir, a giant pillow fight, or synchronized dance choreographies, flashmobs disrupt the routine of daily life, leaving spectators and performers with a sense of child-like wonder.
+        </p>
+      </section>
+
+      {/* Platform Features Grid */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-black text-slate-800 tracking-tight text-center">How We Facilitate Connections</h2>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Card 1 */}
+          <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-premium space-y-3">
+            <div className="h-10 w-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+              <Calendar size={18} />
+            </div>
+            <h3 className="font-bold text-slate-800 text-base">Discovery & Coordination</h3>
+            <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">
+              Find exactly when and where surprise meetups are happening in your city. Our categories help you filter by your talents—from synchronized dance routines to live vocal choruses.
+            </p>
+          </div>
+
+          {/* Card 2 */}
+          <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-premium space-y-3">
+            <div className="h-10 w-10 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0">
+              <Smile size={18} />
+            </div>
+            <h3 className="font-bold text-slate-800 text-base">Secrecy & Security</h3>
+            <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">
+              To keep the surprise element intact, detailed performance guidelines, sheet music, and direct coordinator contact methods are locked until you sign up and join the crowd list.
+            </p>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-premium space-y-3">
+            <div className="h-10 w-10 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center shrink-0">
+              <MapPin size={18} />
+            </div>
+            <h3 className="font-bold text-slate-800 text-base">Unified Maps & Directions</h3>
+            <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">
+              Every event contains visual markers and coordinates linked to Google Maps, ensuring everyone lands at the exact fountain, street block, or transit hall on time.
+            </p>
+          </div>
+
+          {/* Card 4 */}
+          <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-premium space-y-3">
+            <div className="h-10 w-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0">
+              <Award size={18} />
+            </div>
+            <h3 className="font-bold text-slate-800 text-base">Community Host Tools</h3>
+            <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">
+              Become a creator! Coordinate flashmobs using the organizer dashboard to modify instructions, manage the registered performer count, and track participants rosters.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Safety & Guidelines Block */}
+      <section className="bg-amber-50/50 border border-amber-100 rounded-3xl p-8 shadow-sm space-y-4">
+        <h3 className="font-black text-amber-800 text-lg flex items-center space-x-2">
+          <ShieldAlert className="text-amber-600" />
+          <span>Platform Performance Guidelines</span>
+        </h3>
+        <ul className="space-y-2.5 text-slate-600 text-xs sm:text-sm leading-relaxed list-disc list-inside">
+          <li><strong>Stay Safe:</strong> Perform only in public settings that don&apos;t obstruct emergency exits, roads, or critical public services.</li>
+          <li><strong>Consent & Respect:</strong> Never harass spectators. Flashmobs should spread laughter, not discomfort.</li>
+          <li><strong>Leave No Trace:</strong> Ensure all props, clothing, or items (like pillow fight feathers) are completely cleaned up immediately after dispersing.</li>
+          <li><strong>Have Fun:</strong> Blend back into the public crowd seamlessly. The magic is in the sudden transition from average spectator to performer, and back!</li>
+        </ul>
+      </section>
     </div>
   );
 }

@@ -1,0 +1,173 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/client"
+}
+
+model User {
+  id            String         @id @default(uuid())
+  name          String
+  email         String         @unique
+  password      String
+  avatar        String?
+  role          String         @default("USER") // "USER" or "ADMIN"
+  instagram     String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  deletedAt     DateTime?
+
+  events        Event[]        @relation("UserEvents")
+  participants  Participant[]
+  bookmarks     Bookmark[]
+  comments      Comment[]
+  likes         Like[]
+  reports       Report[]
+  notifications Notification[]
+
+  followers     Follow[]       @relation("FollowedBy")
+  following     Follow[]       @relation("Following")
+
+  @@index([email])
+}
+
+model Event {
+  id               String        @id @default(uuid())
+  title            String
+  description      String
+  category         String
+  date             DateTime
+  location         String
+  city             String
+  maxParticipants  Int           @default(0) // 0 for unlimited
+  image            String?
+  status           String        @default("UPCOMING") // "UPCOMING", "LIVE", "ENDED"
+  organizerContact String
+  organizerId      String
+  latitude         Float?
+  longitude        Float?
+  organizer        User          @relation("UserEvents", fields: [organizerId], references: [id], onDelete: Cascade)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  deletedAt        DateTime?
+
+  participants     Participant[]
+  bookmarks        Bookmark[]
+  comments         Comment[]
+  likes            Like[]
+  reports          Report[]
+  views            EventView[]
+
+  @@index([city])
+  @@index([category])
+  @@index([date])
+  @@index([status])
+  @@index([organizerId])
+}
+
+model Participant {
+  id       String   @id @default(uuid())
+  userId   String
+  eventId  String
+  status   String   @default("JOINED") // "JOINED" or "WAITLIST"
+  joinedAt DateTime @default(now())
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event    Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, eventId])
+  @@index([userId])
+  @@index([eventId])
+}
+
+model Bookmark {
+  id      String @id @default(uuid())
+  userId  String
+  eventId String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, eventId])
+  @@index([userId])
+  @@index([eventId])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  userId    String
+  eventId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@index([eventId])
+  @@index([userId])
+}
+
+model Like {
+  id        String   @id @default(uuid())
+  userId    String
+  eventId   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, eventId])
+  @@index([eventId])
+}
+
+model Follow {
+  id          String   @id @default(uuid())
+  followerId  String
+  followingId String
+  createdAt   DateTime @default(now())
+  follower    User     @relation("Following", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User     @relation("FollowedBy", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@unique([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
+}
+
+model Report {
+  id          String   @id @default(uuid())
+  reason      String
+  description String?
+  userId      String
+  eventId     String
+  status      String   @default("PENDING") // "PENDING", "RESOLVED"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event       Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@index([eventId])
+  @@index([status])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  type      String   @default("INFO") // "INFO", "WAITLIST", "JOIN", "CANCEL", "COMMENT"
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([read])
+}
+
+model EventView {
+  id       String   @id @default(uuid())
+  eventId  String
+  userId   String?
+  viewedAt DateTime @default(now())
+  event    Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@index([eventId])
+}
