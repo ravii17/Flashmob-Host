@@ -45,14 +45,11 @@ export default function Navbar() {
     { name: 'Explore Events', href: '/events' },
     { name: 'Create Event', href: '/events/create' },
     { name: 'My Events', href: '/dashboard' },
-    { name: 'About', href: '/#about' },
+    { name: 'About', href: '/about' },
   ];
 
   const isActive = (path: string) => {
     if (path === '/') return pathname === '/';
-    if (path === '/#about') {
-      return pathname === '/' && typeof window !== 'undefined' && window.location.hash === '#about';
-    }
     if (path === '/events') return pathname === '/events';
     return pathname.startsWith(path);
   };
