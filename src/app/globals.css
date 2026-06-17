@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #F8FAFC;
-  --color-foreground: #0F172A;
-  --color-primary: #2563EB;
-  --color-secondary: #0EA5E9;
-  --color-accent: #8B5CF6;
+  --color-background: #05050A;
+  --color-foreground: #F8FAFC;
+  --color-primary: #FF007F;
+  --color-secondary: #00F0FF;
+  --color-accent: #9D00FF;
   
   --radius-xl: 16px;
   --radius-2xl: 24px;
 }
 
 :root {
-  --background: #F8FAFC;
-  --foreground: #0F172A;
-  --primary: #2563EB;
-  --secondary: #0EA5E9;
-  --accent: #8B5CF6;
+  --background: #05050A;
+  --foreground: #F8FAFC;
+  --primary: #FF007F;
+  --secondary: #00F0FF;
+  --accent: #9D00FF;
 }
 
 body {
@@ -27,20 +27,51 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Premium Apple/Airbnb Design Utility Classes */
+/* Premium Concert Design Utility Classes */
 .glass {
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(13, 13, 20, 0.65);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-premium {
+  background: linear-gradient(135deg, rgba(20, 20, 35, 0.7) 0%, rgba(10, 10, 15, 0.8) 100%);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .shadow-premium {
-  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(255, 255, 255, 0.02);
 }
 
 .shadow-premium-hover {
-  box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.08), 0 1px 3px rgba(15, 23, 42, 0.02);
+  box-shadow: 0 20px 40px -15px rgba(255, 0, 127, 0.15), 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.shadow-neon-pink {
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.35), 0 0 30px rgba(255, 0, 127, 0.15);
+}
+
+.shadow-neon-cyan {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.35), 0 0 30px rgba(0, 240, 255, 0.15);
+}
+
+.shadow-neon-purple {
+  box-shadow: 0 0 15px rgba(157, 0, 255, 0.35), 0 0 30px rgba(157, 0, 255, 0.15);
+}
+
+.text-neon-pink {
+  text-shadow: 0 0 8px rgba(255, 0, 127, 0.6), 0 0 20px rgba(255, 0, 127, 0.3);
+}
+
+.text-neon-cyan {
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.text-neon-purple {
+  text-shadow: 0 0 8px rgba(157, 0, 255, 0.6), 0 0 20px rgba(157, 0, 255, 0.3);
 }
 
 .animate-fade-in {
@@ -49,6 +80,10 @@ body {
 
 .animate-slide-up {
   animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-laser {
+  animation: laserScan 4s infinite linear;
 }
 
 @keyframes fadeIn {
@@ -86,6 +121,86 @@ body {
   animation: pulseSubtle 2s infinite ease-in-out;
 }
 
+@keyframes laserScan {
+  0% {
+    transform: translateX(-100%) rotate(15deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(200%) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+@keyframes floatLight {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.animate-float-light {
+  animation: floatLight 15s infinite ease-in-out;
+}
+
+.animate-float-light-delayed {
+  animation: floatLight 20s infinite ease-in-out;
+  animation-delay: -5s;
+}
+
+/* Sound Wave / Equalizer Bars */
+.eq-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 16px;
+  width: 20px;
+}
+
+.eq-bar {
+  width: 3px;
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: 1px;
+  transform-origin: bottom;
+  animation: eq-bounce 1s infinite ease-in-out;
+}
+
+.eq-bar:nth-child(2) {
+  animation-delay: 0.2s;
+  background-color: var(--secondary);
+}
+
+.eq-bar:nth-child(3) {
+  animation-delay: 0.4s;
+  background-color: var(--accent);
+}
+
+.eq-bar:nth-child(4) {
+  animation-delay: 0.1s;
+  background-color: #39FF14; /* Lime green */
+}
+
+@keyframes eq-bounce {
+  0%, 100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
 /* Hide scrollbars but keep functionality */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -94,3 +209,4 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+

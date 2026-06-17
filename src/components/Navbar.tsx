@@ -252,24 +252,24 @@ export default function Navbar() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className={`pointer-events-auto flex items-center justify-between w-full max-w-6xl rounded-full border transition-all duration-300 ${
             isScrolled
-              ? 'py-2.5 px-5 bg-white/70 backdrop-blur-xl border-white/30 shadow-lg scale-[0.99]'
-              : 'py-3.5 px-6 bg-white/85 backdrop-blur-md border-white/20 shadow-premium'
+              ? 'py-2.5 px-5 bg-zinc-950/60 backdrop-blur-xl border-white/10 shadow-[0_0_20px_rgba(255,0,127,0.15)] scale-[0.99]'
+              : 'py-3.5 px-6 bg-zinc-950/80 backdrop-blur-md border-white/5 shadow-premium shadow-[0_0_15px_rgba(0,240,255,0.05)]'
           }`}
         >
           {/* Left: Brand logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2 text-blue-600 font-bold text-lg tracking-tight transition-transform active:scale-95 group">
-              <span className="bg-blue-600 p-1.5 rounded-full text-white transition-transform group-hover:scale-105 duration-200">
+            <Link href="/" className="flex items-center space-x-2 text-pink-500 font-bold text-lg tracking-tight transition-transform active:scale-95 group">
+              <span className="bg-gradient-to-tr from-pink-500 to-purple-650 p-1.5 rounded-full text-white transition-transform group-hover:scale-105 duration-205 shadow-[0_0_10px_rgba(255,0,127,0.5)]">
                 <Sparkles size={18} className="animate-pulse" />
               </span>
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 bg-clip-text text-transparent font-black tracking-tight hidden sm:inline">
+              <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent font-black tracking-tight hidden sm:inline text-neon-pink">
                 FlashMob Connect
               </span>
             </Link>
           </div>
 
           {/* Center: Desktop Navigation links */}
-          <div className="hidden md:flex items-center space-x-1 bg-slate-100/40 p-1 rounded-full border border-slate-200/20">
+          <div className="hidden md:flex items-center space-x-1 bg-white/5 p-1 rounded-full border border-white/5">
             {navLinks.map((link, idx) => {
               const active = isActive(link.href);
               return (
@@ -278,8 +278,8 @@ export default function Navbar() {
                   href={link.href}
                   onMouseEnter={() => setHoveredIndex(idx)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors duration-200 ${
-                    active ? 'text-blue-600 font-bold' : 'text-slate-600 hover:text-slate-900'
+                  className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors duration-205 ${
+                    active ? 'text-pink-500 font-bold text-neon-pink' : 'text-zinc-400 hover:text-white'
                   }`}
                 >
                   {/* Sliding Hover Highlight */}
@@ -287,7 +287,7 @@ export default function Navbar() {
                     {hoveredIndex === idx && (
                       <motion.span
                         layoutId="navHoverHighlight"
-                        className="absolute inset-0 bg-slate-200/50 rounded-full -z-10"
+                        className="absolute inset-0 bg-white/10 rounded-full -z-10"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -300,7 +300,7 @@ export default function Navbar() {
                   {active && (
                     <motion.span
                       layoutId="navActiveIndicator"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-blue-600 rounded-full"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-pink-500 rounded-full shadow-[0_0_8px_rgba(255,0,127,0.8)]"
                       transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                     />
                   )}
@@ -315,12 +315,12 @@ export default function Navbar() {
             {/* Search KBD Button */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="flex items-center space-x-2 px-3 py-1.5 bg-slate-100/50 hover:bg-slate-100 text-slate-500 hover:text-slate-800 rounded-full border border-slate-200/40 transition-all text-xs font-bold cursor-pointer"
+              className="flex items-center space-x-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white rounded-full border border-white/5 transition-all text-xs font-bold cursor-pointer hover:border-pink-500/30"
               title="Search events (Ctrl+K)"
             >
               <Search size={13} />
               <span className="hidden lg:inline text-[11px]">Search</span>
-              <kbd className="hidden sm:inline bg-white px-1.5 py-0.5 rounded border border-slate-200 text-[9px] text-slate-400 font-mono shadow-3xs">
+              <kbd className="hidden sm:inline bg-zinc-900 px-1.5 py-0.5 rounded border border-white/10 text-[9px] text-zinc-500 font-mono shadow-3xs">
                 ⌘K
               </kbd>
             </button>
@@ -330,7 +330,7 @@ export default function Navbar() {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setShowNotifications(!showNotifications)}
-                  className="p-2 text-slate-500 hover:text-blue-600 hover:bg-slate-100/60 rounded-full transition-all cursor-pointer relative"
+                  className="p-2 text-zinc-400 hover:text-pink-500 hover:bg-white/5 rounded-full transition-all cursor-pointer relative"
                   title="Notifications"
                 >
                   <Bell size={17} />
@@ -346,57 +346,57 @@ export default function Navbar() {
                 <AnimatePresence>
                   {showNotifications && (
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute right-0 mt-2 w-80 rounded-2xl glass border border-white/20 shadow-2xl p-4 space-y-3 z-[60]"
-                    >
-                      <div className="flex items-center justify-between border-b border-white/10 pb-2">
-                        <span className="text-xs font-black text-slate-800">Alerts ({unreadCount})</span>
-                        {unreadCount > 0 && (
-                          <button
-                            onClick={handleMarkAllRead}
-                            className="text-[10px] font-bold text-blue-600 hover:underline cursor-pointer flex items-center gap-0.5"
-                          >
-                            <Check size={11} />
-                            <span>Mark all read</span>
-                          </button>
-                        )}
-                      </div>
-
-                      <div className="space-y-2.5 max-h-60 overflow-y-auto pr-1 no-scrollbar">
-                        {notifications.length > 0 ? (
-                          notifications.map((n) => (
-                            <div
-                              key={n.id}
-                              className="group p-2.5 rounded-xl bg-slate-50/60 hover:bg-blue-50/20 border border-slate-100/50 flex flex-col space-y-1 relative"
-                            >
-                              <div className="flex items-start justify-between">
-                                <h5 className="text-[11px] font-bold text-slate-800 leading-snug">{n.title}</h5>
-                                <button
-                                  onClick={() => handleMarkOneRead(n.id)}
-                                  className="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-blue-600 transition-opacity cursor-pointer p-0.5"
-                                  title="Mark as read"
-                                >
-                                  <Check size={11} />
-                                </button>
-                              </div>
-                              <p className="text-[10px] text-slate-500 leading-normal font-medium">{n.message}</p>
-                              <span className="text-[8px] text-slate-400 font-semibold mt-1 self-end">
-                                {new Date(n.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                              </span>
-                            </div>
-                          ))
-                        ) : (
-                          <div className="text-center py-6">
-                            <p className="text-xs text-slate-400 font-medium">No unread notifications</p>
-                          </div>
-                        )}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                       initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                       animate={{ opacity: 1, scale: 1, y: 0 }}
+                       exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                       transition={{ duration: 0.15 }}
+                       className="absolute right-0 mt-2 w-80 rounded-2xl glass-premium border border-white/10 shadow-[0_0_35px_rgba(0,0,0,0.85)] p-4 space-y-3 z-[60] text-white"
+                     >
+                       <div className="flex items-center justify-between border-b border-white/10 pb-2">
+                         <span className="text-xs font-black text-white uppercase tracking-wider">Alerts ({unreadCount})</span>
+                         {unreadCount > 0 && (
+                           <button
+                             onClick={handleMarkAllRead}
+                             className="text-[10px] font-bold text-pink-500 hover:underline cursor-pointer flex items-center gap-0.5"
+                           >
+                             <Check size={11} />
+                             <span>Mark all read</span>
+                           </button>
+                         )}
+                       </div>
+ 
+                       <div className="space-y-2.5 max-h-60 overflow-y-auto pr-1 no-scrollbar">
+                         {notifications.length > 0 ? (
+                           notifications.map((n) => (
+                             <div
+                               key={n.id}
+                               className="group p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 flex flex-col space-y-1 relative transition-colors"
+                             >
+                               <div className="flex items-start justify-between">
+                                 <h5 className="text-[11px] font-bold text-white leading-snug">{n.title}</h5>
+                                 <button
+                                   onClick={() => handleMarkOneRead(n.id)}
+                                   className="opacity-0 group-hover:opacity-100 text-zinc-400 hover:text-pink-500 transition-opacity cursor-pointer p-0.5"
+                                   title="Mark as read"
+                                 >
+                                   <Check size={11} />
+                                 </button>
+                               </div>
+                               <p className="text-[10px] text-zinc-400 leading-normal font-medium">{n.message}</p>
+                               <span className="text-[8px] text-zinc-500 font-semibold mt-1 self-end">
+                                 {new Date(n.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                               </span>
+                             </div>
+                           ))
+                         ) : (
+                           <div className="text-center py-6">
+                             <p className="text-xs text-zinc-500 font-medium">No unread notifications</p>
+                           </div>
+                         )}
+                       </div>
+                     </motion.div>
+                   )}
+                 </AnimatePresence>
               </div>
             )}
 
@@ -415,7 +415,7 @@ export default function Navbar() {
                         className="h-8 w-8 rounded-full object-cover border border-slate-200 group-hover:border-blue-400 transition-all shadow-xs"
                       />
                     ) : (
-                      <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-blue-500 to-sky-400 text-white flex items-center justify-center font-bold text-xs border border-slate-200 group-hover:border-blue-400 transition-all shadow-xs">
+                      <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-pink-500 to-purple-650 text-white flex items-center justify-center font-bold text-xs border border-white/10 group-hover:border-pink-500 transition-all shadow-xs shadow-[0_0_8px_rgba(255,0,127,0.3)]">
                         {user.name.charAt(0).toUpperCase()}
                       </div>
                     )}
@@ -433,23 +433,23 @@ export default function Navbar() {
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95, y: 10 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute right-0 mt-2.5 w-56 rounded-2xl glass border border-white/20 shadow-2xl p-2 space-y-1 z-[60]"
+                      className="absolute right-0 mt-2.5 w-56 rounded-2xl glass-premium border border-white/10 shadow-[0_0_35px_rgba(0,0,0,0.85)] p-2 space-y-1 z-[60] text-white"
                     >
                       <div className="px-3 py-2 border-b border-white/10 mb-1">
-                        <p className="text-xs font-bold text-slate-800">{user.name}</p>
-                        <p className="text-[10px] text-slate-500 truncate">{user.email || 'Member'}</p>
+                        <p className="text-xs font-bold text-white">{user.name}</p>
+                        <p className="text-[10px] text-zinc-400 truncate">{user.email || 'Member'}</p>
                       </div>
                       <Link
                         href="/dashboard"
                         onClick={() => setAvatarDropdownOpen(false)}
-                        className="flex items-center space-x-2 px-3 py-2 text-xs font-semibold text-slate-600 hover:text-blue-600 hover:bg-slate-100/40 rounded-xl transition-all"
+                        className="flex items-center space-x-2 px-3 py-2 text-xs font-semibold text-zinc-300 hover:text-pink-500 hover:bg-white/5 rounded-xl transition-all"
                       >
                         <span>My Dashboard</span>
                       </Link>
                       <Link
                         href="/profile"
                         onClick={() => setAvatarDropdownOpen(false)}
-                        className="flex items-center space-x-2 px-3 py-2 text-xs font-semibold text-slate-600 hover:text-blue-600 hover:bg-slate-100/40 rounded-xl transition-all"
+                        className="flex items-center space-x-2 px-3 py-2 text-xs font-semibold text-zinc-300 hover:text-pink-500 hover:bg-white/5 rounded-xl transition-all"
                       >
                         <span>My Profile</span>
                       </Link>
@@ -457,7 +457,7 @@ export default function Navbar() {
                         <Link
                           href="/admin"
                           onClick={() => setAvatarDropdownOpen(false)}
-                          className="flex items-center space-x-2 px-3 py-2 text-xs font-semibold text-red-650 hover:text-red-700 hover:bg-rose-50/20 rounded-xl transition-all"
+                          className="flex items-center space-x-2 px-3 py-2 text-xs font-semibold text-red-400 hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-all"
                         >
                           <span>Admin Console</span>
                         </Link>
@@ -468,9 +468,9 @@ export default function Navbar() {
                           setAvatarDropdownOpen(false);
                           logout();
                         }}
-                        className="w-full flex items-center space-x-2 px-3 py-2 text-xs font-bold text-red-600 hover:bg-red-50/50 rounded-xl transition-all text-left cursor-pointer"
+                        className="w-full flex items-center space-x-2 px-3 py-2 text-xs font-bold text-red-400 hover:bg-red-500/10 rounded-xl transition-all text-left cursor-pointer"
                       >
-                        <LogOut size={13} className="text-red-500" />
+                        <LogOut size={13} className="text-red-400" />
                         <span>Log Out</span>
                       </button>
                     </motion.div>
@@ -481,13 +481,13 @@ export default function Navbar() {
               <div className="hidden md:flex items-center space-x-2">
                 <Link
                   href="/login"
-                  className="text-xs font-bold text-slate-600 hover:text-blue-600 px-3.5 py-2 transition-colors duration-200"
+                  className="text-xs font-bold text-zinc-400 hover:text-pink-500 px-3.5 py-2 transition-colors duration-205"
                 >
                   Log In
                 </Link>
                 <Link
                   href="/signup"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4.5 py-2 rounded-full transition-all duration-200 active:scale-95 shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20"
+                  className="bg-gradient-to-r from-pink-500 to-purple-650 hover:from-pink-600 hover:to-purple-700 text-white font-black text-xs px-4.5 py-2 rounded-full transition-all duration-200 active:scale-95 shadow-[0_0_15px_rgba(255,0,127,0.3)] hover:shadow-[0_0_20px_rgba(255,0,127,0.5)]"
                 >
                   Sign Up
                 </Link>
@@ -498,7 +498,7 @@ export default function Navbar() {
             <div className="flex md:hidden">
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="p-2 text-slate-600 hover:text-blue-600 bg-slate-100/50 hover:bg-slate-100 rounded-full transition-all cursor-pointer border border-slate-200/30"
+                className="p-2 text-zinc-400 hover:text-pink-500 bg-white/5 hover:bg-white/10 rounded-full transition-all cursor-pointer border border-white/5"
               >
                 <Menu size={18} />
               </button>
@@ -514,7 +514,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[120] flex items-start justify-center pt-[12vh] px-4 bg-slate-950/45 backdrop-blur-md"
+            className="fixed inset-0 z-[120] flex items-start justify-center pt-[12vh] px-4 bg-black/75 backdrop-blur-md"
             onClick={() => setSearchOpen(false)}
           >
             <motion.div
@@ -522,18 +522,18 @@ export default function Navbar() {
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.95, y: -20, opacity: 0 }}
               transition={{ type: 'spring', duration: 0.35 }}
-              className="w-full max-w-lg rounded-3xl bg-white/90 backdrop-blur-2xl border border-white/30 shadow-2xl p-5 space-y-4"
+              className="w-full max-w-lg rounded-3xl bg-zinc-950/80 backdrop-blur-2xl border border-white/10 shadow-[0_0_40px_rgba(255,0,127,0.15)] p-5 space-y-4 text-white"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
                 <input
                   type="text"
                   ref={searchInputRef}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search events, cities, or categories..."
-                  className="w-full pl-11 pr-4 py-3 bg-slate-100/60 border border-slate-200/50 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white text-sm font-semibold transition-all text-slate-800 placeholder-slate-400"
+                  className="w-full pl-11 pr-4 py-3 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:bg-zinc-900 text-sm font-semibold transition-all text-white placeholder-zinc-500"
                 />
               </div>
 
@@ -541,13 +541,13 @@ export default function Navbar() {
               <div className="space-y-2">
                 {!searchQuery.trim() ? (
                   <>
-                    <h5 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1">Popular Categories</h5>
+                    <h5 className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider px-1">Popular Categories</h5>
                     <div className="grid grid-cols-2 gap-2">
                       {['Dance', 'Music', 'Social', 'Fitness'].map((cat) => (
                         <button
                           key={cat}
                           onClick={() => setSearchQuery(cat)}
-                          className="flex items-center space-x-2 p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50/30 border border-slate-100 hover:border-blue-100 transition-all text-xs font-bold text-slate-700 text-left cursor-pointer"
+                          className="flex items-center space-x-2 p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-pink-500/30 transition-all text-xs font-bold text-zinc-300 text-left cursor-pointer"
                         >
                           <span className="text-base">{getCategoryEmoji(cat)}</span>
                           <span>{cat} Events</span>
@@ -556,27 +556,27 @@ export default function Navbar() {
                     </div>
                   </>
                 ) : loadingSearch ? (
-                  <div className="text-center py-8 text-xs font-semibold text-slate-500">
+                  <div className="text-center py-8 text-xs font-semibold text-zinc-500">
                     Searching database...
                   </div>
                 ) : searchResults.length > 0 ? (
                   <>
-                    <h5 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1">Search Results</h5>
+                    <h5 className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider px-1">Search Results</h5>
                     <div className="max-h-60 overflow-y-auto pr-1 no-scrollbar space-y-2">
                       {searchResults.map((event) => (
                         <Link
                           key={event.id}
                           href={`/events/${event.id}`}
                           onClick={() => setSearchOpen(false)}
-                          className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 hover:bg-blue-50/20 border border-slate-100 hover:border-blue-100 transition-all group cursor-pointer"
+                          className="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-pink-500/30 transition-all group cursor-pointer"
                         >
                           <div className="flex items-center space-x-3">
                             <span className="text-xl">{getCategoryEmoji(event.category)}</span>
                             <div>
-                              <h4 className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                              <h4 className="text-xs font-bold text-white group-hover:text-pink-500 transition-colors">
                                 {event.title}
                               </h4>
-                              <p className="text-[10px] text-slate-500 flex items-center gap-1 mt-0.5">
+                              <p className="text-[10px] text-zinc-500 flex items-center gap-1 mt-0.5">
                                 <MapPin size={9} />
                                 <span>{event.city}</span>
                                 <span>•</span>
@@ -585,7 +585,7 @@ export default function Navbar() {
                               </p>
                             </div>
                           </div>
-                          <span className="text-[9px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span className="text-[9px] font-bold text-pink-500 bg-pink-500/10 px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
                             View
                           </span>
                         </Link>
@@ -593,14 +593,14 @@ export default function Navbar() {
                     </div>
                   </>
                 ) : (
-                  <div className="text-center py-8 text-xs font-semibold text-slate-400">
+                  <div className="text-center py-8 text-xs font-semibold text-zinc-500">
                     No results found for &ldquo;{searchQuery}&rdquo;
                   </div>
                 )}
               </div>
 
               {/* Command Palette Hints */}
-              <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-[9px] text-slate-400 font-medium font-mono">
+              <div className="flex items-center justify-between pt-2 border-t border-white/10 text-[9px] text-zinc-500 font-medium font-mono">
                 <span>Use keyboard controls</span>
                 <span>ESC to close</span>
               </div>
@@ -616,21 +616,21 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[150] bg-slate-950/45 backdrop-blur-xl flex flex-col justify-between p-6"
+            className="fixed inset-0 z-[150] bg-zinc-950/95 backdrop-blur-xl flex flex-col justify-between p-6 text-white"
           >
             {/* Header inside drawer */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2 text-blue-600 font-bold text-lg">
-                <span className="bg-blue-600 p-1.5 rounded-full text-white">
+              <div className="flex items-center space-x-2 text-pink-500 font-bold text-lg">
+                <span className="bg-gradient-to-tr from-pink-500 to-purple-650 p-1.5 rounded-full text-white">
                   <Sparkles size={16} />
                 </span>
-                <span className="bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent font-black tracking-tight">
+                <span className="bg-gradient-to-r from-pink-500 to-cyan-400 bg-clip-text text-transparent font-black tracking-tight">
                   FlashMob Connect
                 </span>
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2.5 text-slate-500 hover:text-slate-800 bg-white/60 hover:bg-white rounded-full border border-white/20 transition-all cursor-pointer"
+                className="p-2.5 text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full border border-white/5 transition-all cursor-pointer"
               >
                 <X size={18} />
               </button>
@@ -648,7 +648,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-2xl font-black text-slate-800 hover:text-blue-600 transition-colors"
+                    className="text-2xl font-black text-zinc-300 hover:text-pink-500 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -663,25 +663,25 @@ export default function Navbar() {
                   setMobileMenuOpen(false);
                   setSearchOpen(true);
                 }}
-                className="w-full flex items-center space-x-3 px-4 py-3 bg-white/50 border border-white/30 rounded-2xl text-slate-600 font-bold transition-all text-sm shadow-sm"
+                className="w-full flex items-center space-x-3 px-4 py-3 bg-white/5 border border-white/10 rounded-2xl text-zinc-450 font-bold transition-all text-sm shadow-sm"
               >
                 <Search size={15} />
                 <span>Search events...</span>
               </button>
 
               {user ? (
-                <div className="bg-white/50 border border-white/30 rounded-3xl p-4 flex items-center justify-between">
+                <div className="bg-white/5 border border-white/10 rounded-3xl p-4 flex items-center justify-between">
                   <Link href="/profile" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-3">
                     {user.avatar ? (
-                      <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full object-cover border border-slate-200" />
+                      <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full object-cover border border-white/10" />
                     ) : (
-                      <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-blue-500 to-sky-400 text-white flex items-center justify-center font-bold text-base">
+                      <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-pink-500 to-purple-650 text-white flex items-center justify-center font-bold text-base">
                         {user.name.charAt(0).toUpperCase()}
                       </div>
                     )}
                     <div>
-                      <h4 className="font-bold text-slate-800 text-sm">{user.name}</h4>
-                      <p className="text-xs text-slate-500">Active Account</p>
+                      <h4 className="font-bold text-white text-sm">{user.name}</h4>
+                      <p className="text-xs text-zinc-500">Active Account</p>
                     </div>
                   </Link>
                   <button
@@ -689,7 +689,7 @@ export default function Navbar() {
                       setMobileMenuOpen(false);
                       logout();
                     }}
-                    className="flex items-center space-x-1.5 text-red-500 text-xs font-bold bg-rose-50 hover:bg-rose-100 px-4 py-2 rounded-xl transition-all"
+                    className="flex items-center space-x-1.5 text-red-400 text-xs font-bold bg-red-500/10 hover:bg-red-500/20 px-4 py-2 rounded-xl transition-all"
                   >
                     <LogOut size={14} />
                     <span>Log Out</span>
@@ -700,14 +700,14 @@ export default function Navbar() {
                   <Link
                     href="/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="w-full py-3.5 text-center text-slate-700 font-bold bg-white/60 hover:bg-white border border-white/20 rounded-2xl transition-all text-sm"
+                    className="w-full py-3.5 text-center text-zinc-350 font-bold bg-white/5 hover:bg-white/10 border border-white/5 rounded-2xl transition-all text-sm"
                   >
                     Log In
                   </Link>
                   <Link
                     href="/signup"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="w-full py-3.5 text-center text-white font-bold bg-blue-600 hover:bg-blue-700 rounded-2xl transition-all text-sm shadow-md shadow-blue-500/10"
+                    className="w-full py-3.5 text-center text-white font-bold bg-gradient-to-r from-pink-500 to-purple-650 hover:from-pink-600 hover:to-purple-700 rounded-2xl transition-all text-sm shadow-[0_0_15px_rgba(255,0,127,0.35)]"
                   >
                     Sign Up
                   </Link>

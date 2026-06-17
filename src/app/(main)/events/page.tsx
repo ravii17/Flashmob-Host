@@ -129,29 +129,33 @@ export default function EventsFeedPage() {
   ];
 
   return (
-    <div className="space-y-8 pb-12 animate-fade-in">
+    <div className="space-y-8 pb-12 animate-fade-in relative z-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-slate-800 tracking-tight">Explore Flashmobs</h1>
-          <p className="text-sm text-slate-500">
-            Discover and join surprise community events, dance freezes, and live street ensembles.
+          <h1 className="text-3xl font-black text-white text-neon-pink tracking-tight uppercase">Explore Live Gigs</h1>
+          <p className="text-xs text-zinc-400 font-semibold mt-1">
+            Discover and join spontaneous festivals, street bands, and flash choreography crews nearby.
           </p>
         </div>
 
         {/* Sorting Switcher */}
-        <div className="bg-slate-100 p-1 rounded-xl flex items-center self-start md:self-auto shrink-0 space-x-1">
+        <div className="bg-white/5 p-1 rounded-xl flex items-center self-start md:self-auto shrink-0 space-x-1 border border-white/5">
           <button
             onClick={() => setSortType('upcoming')}
-            className={`text-xs font-bold px-4 py-2 rounded-lg transition-all cursor-pointer ${
-              sortType === 'upcoming' ? 'bg-white text-slate-800 shadow-xs' : 'text-slate-500 hover:text-slate-700'
+            className={`text-xs font-black px-4 py-2 rounded-lg transition-all cursor-pointer ${
+              sortType === 'upcoming'
+                ? 'bg-gradient-to-r from-pink-500 to-purple-650 text-white shadow-[0_0_10px_rgba(255,0,127,0.3)]'
+                : 'text-zinc-450 hover:text-white'
             }`}
           >
             Upcoming
           </button>
           <button
             onClick={() => setSortType('popular')}
-            className={`text-xs font-bold px-4 py-2 rounded-lg transition-all cursor-pointer ${
-              sortType === 'popular' ? 'bg-white text-slate-800 shadow-xs' : 'text-slate-500 hover:text-slate-700'
+            className={`text-xs font-black px-4 py-2 rounded-lg transition-all cursor-pointer ${
+              sortType === 'popular'
+                ? 'bg-gradient-to-r from-pink-500 to-purple-650 text-white shadow-[0_0_10px_rgba(255,0,127,0.3)]'
+                : 'text-zinc-450 hover:text-white'
             }`}
           >
             Most Popular
@@ -159,16 +163,16 @@ export default function EventsFeedPage() {
           <button
             onClick={handleNearbySelect}
             disabled={geoLoading}
-            className={`text-xs font-bold px-4 py-2 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`text-xs font-black px-4 py-2 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
               sortType === 'nearby'
-                ? 'bg-white text-slate-800 shadow-xs'
-                : 'text-slate-500 hover:text-slate-700'
+                ? 'bg-gradient-to-r from-pink-500 to-purple-650 text-white shadow-[0_0_10px_rgba(255,0,127,0.3)]'
+                : 'text-zinc-450 hover:text-white'
             }`}
           >
             {geoLoading ? (
-              <div className="h-3 w-3 border-2 border-indigo-650 border-t-transparent rounded-full animate-spin"></div>
+              <div className="h-3 w-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
             ) : (
-              <Compass size={12} className={sortType === 'nearby' ? 'text-indigo-600' : ''} />
+              <Compass size={12} className={sortType === 'nearby' ? 'text-white' : ''} />
             )}
             <span>Nearby Me</span>
           </button>
@@ -183,8 +187,8 @@ export default function EventsFeedPage() {
             onClick={() => setCategoryFilter(cat.name)}
             className={`flex items-center space-x-1.5 font-bold text-xs py-2.5 px-4 rounded-xl transition-all border shrink-0 active:scale-95 cursor-pointer shadow-xs ${
               categoryFilter === cat.name
-                ? 'bg-indigo-600 border-indigo-600 text-white shadow-sm'
-                : 'bg-white border-slate-100 hover:border-slate-200 text-slate-700'
+                ? 'bg-gradient-to-r from-pink-500 to-purple-650 border-pink-500 text-white shadow-[0_0_10px_rgba(255,0,127,0.3)]'
+                : 'bg-white/5 border-white/5 hover:border-pink-500/30 text-zinc-300'
             }`}
           >
             <span>{cat.icon}</span>
@@ -194,31 +198,31 @@ export default function EventsFeedPage() {
       </div>
 
       {/* Filters Form Panel */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-white p-5 rounded-2xl border border-slate-100 shadow-premium">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-zinc-950/40 backdrop-blur-md p-5 rounded-2xl border border-white/5 shadow-premium text-white">
         {/* City Input */}
         <div>
-          <label className="text-[9px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Search City</label>
+          <label className="text-[9px] font-bold uppercase tracking-widest text-zinc-500 block mb-1">Search City</label>
           <div className="relative">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+            <Search className="absolute left-3 top-3 h-4 w-4 text-zinc-400" />
             <input
               type="text"
               placeholder="e.g. New York, Chicago"
               value={cityFilter}
               onChange={(e) => setCityFilter(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-indigo-500 focus:outline-none text-sm text-slate-800 transition-colors font-semibold placeholder-slate-400"
+              className="w-full pl-9 pr-4 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white transition-all font-semibold placeholder-zinc-500"
             />
           </div>
         </div>
 
         {/* Date Selector */}
         <div>
-          <label className="text-[9px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Date Range</label>
+          <label className="text-[9px] font-bold uppercase tracking-widest text-zinc-500 block mb-1">Date Range</label>
           <div className="relative">
-            <Calendar className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+            <Calendar className="absolute left-3 top-3 h-4 w-4 text-zinc-400" />
             <select
               value={dateFilter}
               onChange={(e) => setDateFilter(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-indigo-500 focus:outline-none text-sm text-slate-700 bg-slate-50 hover:bg-slate-100/70 cursor-pointer appearance-none font-semibold"
+              className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white cursor-pointer appearance-none font-semibold text-zinc-350"
             >
               <option value="all">Any Date</option>
               <option value="today">Today</option>
@@ -230,13 +234,13 @@ export default function EventsFeedPage() {
 
         {/* Category Selector */}
         <div>
-          <label className="text-[9px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Category Select</label>
+          <label className="text-[9px] font-bold uppercase tracking-widest text-zinc-500 block mb-1">Category Select</label>
           <div className="relative">
-            <Filter className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+            <Filter className="absolute left-3 top-3 h-4 w-4 text-zinc-400" />
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-indigo-500 focus:outline-none text-sm text-slate-700 bg-slate-50 hover:bg-slate-100/70 cursor-pointer appearance-none font-semibold"
+              className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white cursor-pointer appearance-none font-semibold text-zinc-350"
             >
               {categories.map((cat) => (
                 <option key={cat.name} value={cat.name}>
@@ -252,20 +256,20 @@ export default function EventsFeedPage() {
       {loading ? (
         <div className="flex flex-col items-center justify-center py-20 space-y-3">
           <Spinner size="lg" />
-          <p className="text-slate-500 text-sm font-semibold">Scanning community events...</p>
+          <p className="text-zinc-400 text-sm font-semibold">Tuning the vibe... Scanning events...</p>
         </div>
       ) : eventsList.length === 0 ? (
-        <div className="text-center py-16 bg-white border border-slate-100 rounded-3xl p-8 shadow-premium space-y-4 max-w-sm mx-auto">
-          <div className="h-14 w-14 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto">
+        <div className="text-center py-16 bg-zinc-950/40 border border-white/5 rounded-3xl p-8 shadow-premium space-y-4 max-w-sm mx-auto">
+          <div className="h-14 w-14 bg-pink-500/10 text-pink-400 border border-pink-500/20 rounded-full flex items-center justify-center mx-auto shadow-[0_0_10px_rgba(255,0,127,0.15)]">
             <Info size={24} />
           </div>
-          <h3 className="font-bold text-slate-800 text-base">No Flashmobs Found</h3>
-          <p className="text-xs text-slate-500 leading-relaxed font-medium">
-            We couldn't find any flashmobs matching your criteria. Try adjusting your filters or host one!
+          <h3 className="font-bold text-white text-base">No Concerts/Gigs Found</h3>
+          <p className="text-xs text-zinc-400 leading-relaxed font-medium">
+            We couldn't find any flashmobs matching your criteria. Try adjusting your filters or launch your own event!
           </p>
           <Link
             href="/events/create"
-            className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all shadow-md active:scale-95"
+            className="inline-block bg-gradient-to-r from-pink-500 to-purple-650 text-white font-black text-xs px-5 py-2.5 rounded-xl transition-all shadow-[0_0_12px_rgba(255,0,127,0.3)] active:scale-95"
           >
             Host a Flashmob
           </Link>
@@ -288,12 +292,12 @@ export default function EventsFeedPage() {
               <button
                 onClick={handleLoadMore}
                 disabled={loadingMore}
-                className="bg-white hover:bg-slate-50 text-slate-700 hover:text-indigo-600 font-bold text-xs py-3 px-8 rounded-xl border border-slate-200 shadow-sm transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
+                className="bg-white/5 border border-white/10 hover:border-pink-500/30 text-white font-bold text-xs py-3 px-8 rounded-xl shadow-sm transition-all active:scale-95 cursor-pointer flex items-center space-x-2"
               >
                 {loadingMore ? (
-                  <Spinner size="sm" className="border-t-indigo-600" />
+                  <Spinner size="sm" className="border-t-pink-500" />
                 ) : (
-                  <span>Load More Flashmobs</span>
+                  <span>Load More Events</span>
                 )}
               </button>
             </div>

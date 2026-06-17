@@ -276,34 +276,34 @@ export default function EventDetailPage(props: PageProps) {
     event.maxParticipants > 0 ? event.maxParticipants - event._count.participants : null;
 
   return (
-    <div className="space-y-8 pb-16">
+    <div className="space-y-8 pb-16 relative z-10 text-white">
       {/* Back navigation */}
       <button
         onClick={() => router.push('/events')}
-        className="flex items-center space-x-1.5 text-slate-500 hover:text-indigo-600 transition-colors font-semibold text-sm cursor-pointer"
+        className="flex items-center space-x-1.5 text-zinc-400 hover:text-pink-500 transition-colors font-bold text-xs cursor-pointer"
       >
         <ChevronLeft size={16} />
-        <span>Back to Events Feed</span>
+        <span>Back to Gigs Feed</span>
       </button>
 
       {/* Hero Banner */}
-      <div className="relative h-64 sm:h-96 w-full rounded-3xl overflow-hidden border border-slate-100 shadow-premium bg-slate-100">
+      <div className="relative h-64 sm:h-96 w-full rounded-[24px] overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.8)] bg-zinc-950">
         {event.image ? (
           <>
             <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent flex items-end p-6 sm:p-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent flex items-end p-6 sm:p-8">
               <div className="text-white space-y-2">
-                <span className="bg-indigo-600 text-white text-[10px] sm:text-xs font-bold px-3.5 py-1.5 rounded-lg uppercase tracking-wider">
+                <span className="bg-gradient-to-r from-pink-500 to-purple-650 text-white text-[10px] font-black px-3.5 py-1.5 rounded-lg uppercase tracking-widest shadow-[0_0_10px_rgba(255,0,127,0.3)]">
                   {event.category}
                 </span>
-                <h1 className="text-2xl sm:text-4xl font-black max-w-2xl leading-tight">
+                <h1 className="text-2xl sm:text-4xl font-black max-w-2xl leading-tight text-white text-neon-pink">
                   {event.title}
                 </h1>
               </div>
             </div>
           </>
         ) : (
-          <div className="w-full h-full bg-gradient-to-tr from-indigo-600 via-sky-500 to-indigo-600 flex flex-col items-center justify-center text-white p-6">
+          <div className="w-full h-full bg-gradient-to-tr from-pink-600 via-purple-650 to-cyan-600 flex flex-col items-center justify-center text-white p-6">
             <span className="text-white bg-white/20 backdrop-blur-xs px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
               {event.category}
             </span>
@@ -318,35 +318,42 @@ export default function EventDetailPage(props: PageProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Details */}
         <div className="lg:col-span-2 space-y-8">
-          <div className="bg-white rounded-3xl border border-slate-100 p-6 sm:p-8 shadow-premium space-y-6">
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight leading-tight">
-              About the Event
+          <div className="bg-zinc-950/40 backdrop-blur-md rounded-[24px] border border-white/5 p-6 sm:p-8 shadow-premium text-white space-y-6 relative">
+            
+            {/* Ticket stub dotted lines and barcode */}
+            <div className="absolute right-6 top-6 hidden md:flex flex-col items-center space-y-1 opacity-20 pointer-events-none">
+              <div className="text-[9px] tracking-[6px] font-mono text-white">VIP-PASS</div>
+              <div className="h-12 w-28 bg-[repeating-linear-gradient(90deg,white,white_2px,transparent_2px,transparent_6px)]" />
+            </div>
+
+            <h1 className="text-2xl sm:text-3xl font-black text-white text-neon-pink tracking-wide uppercase">
+              About the Gig
             </h1>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed whitespace-pre-line">
+            <p className="text-zinc-350 text-sm sm:text-base leading-relaxed whitespace-pre-line font-medium">
               {event.description}
             </p>
 
             {/* Logistics Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-slate-100 pt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-white/5 pt-6">
               <div className="flex items-start space-x-3.5">
-                <div className="h-10 w-10 bg-slate-50 border border-slate-100 text-indigo-600 rounded-xl flex items-center justify-center shrink-0">
+                <div className="h-10 w-10 bg-white/5 border border-white/5 text-pink-500 rounded-xl flex items-center justify-center shrink-0">
                   <Calendar size={18} />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Date & Time</h4>
-                  <p className="text-sm font-bold text-slate-700 leading-tight mt-0.5">{formattedDate}</p>
-                  <p className="text-xs font-semibold text-slate-500 mt-0.5">Starts at {formattedTime}</p>
+                  <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Date & Time</h4>
+                  <p className="text-sm font-bold text-white leading-tight mt-0.5">{formattedDate}</p>
+                  <p className="text-xs font-semibold text-zinc-455 mt-0.5">Starts at {formattedTime}</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-3.5">
-                <div className="h-10 w-10 bg-slate-50 border border-slate-100 text-indigo-600 rounded-xl flex items-center justify-center shrink-0">
+                <div className="h-10 w-10 bg-white/5 border border-white/5 text-pink-500 rounded-xl flex items-center justify-center shrink-0">
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Location</h4>
-                  <p className="text-sm font-bold text-slate-700 leading-tight mt-0.5">{event.location}</p>
-                  <p className="text-xs font-semibold text-slate-500 mt-0.5">{event.city}</p>
+                  <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Location</h4>
+                  <p className="text-sm font-bold text-white leading-tight mt-0.5">{event.location}</p>
+                  <p className="text-xs font-semibold text-zinc-455 mt-0.5">{event.city}</p>
                 </div>
               </div>
             </div>
@@ -355,11 +362,11 @@ export default function EventDetailPage(props: PageProps) {
           {/* Interactive Map view */}
           {event.latitude && event.longitude && (
             <div className="space-y-4">
-              <h3 className="font-bold text-slate-800 text-lg px-2 flex items-center gap-2">
-                <MapPin size={18} className="text-indigo-600" />
+              <h3 className="font-black text-white text-base px-2 flex items-center gap-2 uppercase tracking-wide">
+                <MapPin size={18} className="text-pink-500" />
                 Performance Spot Map
               </h3>
-              <div className="h-72">
+              <div className="h-72 rounded-[24px] overflow-hidden border border-white/5">
                 <InteractiveMap
                   events={[
                     {
@@ -380,11 +387,11 @@ export default function EventDetailPage(props: PageProps) {
           )}
 
           {/* Actions Row */}
-          <div className="flex flex-wrap items-center justify-between gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+          <div className="flex flex-wrap items-center justify-between gap-4 bg-zinc-950/40 backdrop-blur-md p-4 rounded-2xl border border-white/5">
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={handleShare}
-                className="flex items-center space-x-2 bg-white hover:bg-slate-50 text-slate-700 hover:text-indigo-600 font-bold text-xs py-2.5 px-4 rounded-xl border border-slate-200 shadow-xs cursor-pointer transition-colors active:scale-95"
+                className="flex items-center space-x-2 bg-white/5 hover:bg-white/10 text-white hover:text-pink-500 font-bold text-xs py-2.5 px-4 rounded-xl border border-white/10 hover:border-pink-500/30 shadow-xs cursor-pointer transition-colors active:scale-95"
               >
                 <Share2 size={14} />
                 <span>Copy Share Link</span>
@@ -393,8 +400,8 @@ export default function EventDetailPage(props: PageProps) {
               <button
                 onClick={handleBookmarkToggle}
                 disabled={bookmarkLoading}
-                className={`flex items-center space-x-2 bg-white hover:bg-slate-50 text-slate-700 hover:text-indigo-600 font-bold text-xs py-2.5 px-4 rounded-xl border border-slate-200 shadow-xs cursor-pointer transition-colors active:scale-95 ${
-                  hasBookmarked ? 'text-indigo-600 border-indigo-100 bg-indigo-50/20' : ''
+                className={`flex items-center space-x-2 bg-white/5 hover:bg-white/10 text-white hover:text-pink-500 font-bold text-xs py-2.5 px-4 rounded-xl border border-white/10 hover:border-pink-500/30 shadow-xs cursor-pointer transition-colors active:scale-95 ${
+                  hasBookmarked ? 'text-pink-500 border-pink-500/20 bg-pink-500/10' : ''
                 }`}
               >
                 <span>{hasBookmarked ? 'Bookmarked' : 'Add Bookmark'}</span>
@@ -403,18 +410,18 @@ export default function EventDetailPage(props: PageProps) {
               <button
                 onClick={handleLikeToggle}
                 disabled={likeLoading}
-                className={`flex items-center space-x-2 bg-white hover:bg-slate-50 text-slate-700 hover:text-rose-600 font-bold text-xs py-2.5 px-4 rounded-xl border border-slate-200 shadow-xs cursor-pointer transition-colors active:scale-95 ${
-                  hasLiked ? 'text-rose-600 border-rose-100 bg-rose-50/20' : ''
+                className={`flex items-center space-x-2 bg-white/5 hover:bg-white/10 text-white hover:text-rose-500 font-bold text-xs py-2.5 px-4 rounded-xl border border-white/10 hover:border-pink-500/30 shadow-xs cursor-pointer transition-colors active:scale-95 ${
+                  hasLiked ? 'text-pink-500 border-pink-500/20 bg-pink-500/10' : ''
                 }`}
               >
-                <Heart size={14} className={hasLiked ? 'fill-rose-500 text-rose-500' : ''} />
+                <Heart size={14} className={hasLiked ? 'fill-pink-500 text-pink-500' : ''} />
                 <span>{event._count.likes} Likes</span>
               </button>
             </div>
 
             <button
               onClick={() => setShowReportModal(true)}
-              className="flex items-center space-x-1.5 text-xs font-bold text-slate-400 hover:text-rose-600 py-2.5 px-3 rounded-lg hover:bg-rose-50/50 transition-colors cursor-pointer"
+              className="flex items-center space-x-1.5 text-xs font-bold text-zinc-500 hover:text-rose-500 py-2.5 px-3 rounded-lg hover:bg-rose-500/10 transition-colors cursor-pointer"
             >
               <Flag size={13} />
               <span>Report</span>
@@ -422,30 +429,30 @@ export default function EventDetailPage(props: PageProps) {
           </div>
 
           {/* Social Commenting Discussion Thread */}
-          <div className="bg-white rounded-3xl border border-slate-100 p-6 sm:p-8 shadow-premium">
-            <CommentsSection eventId={event.id} currentUser={user} />
+          <div className="bg-zinc-950/40 backdrop-blur-md rounded-[24px] border border-white/5 p-6 sm:p-8 shadow-premium text-white">
+            <CommentsSection eventId={event.id} currentUser={user} organizerId={event.organizerId} />
           </div>
         </div>
 
         {/* Sidebar Sticky Column */}
         <div className="space-y-6">
           {/* Join RSVP Card */}
-          <div className="bg-white rounded-3xl border border-slate-100 p-6 shadow-premium space-y-6">
+          <div className="bg-zinc-950/40 backdrop-blur-md rounded-[24px] border border-white/5 p-6 shadow-premium space-y-6 text-white">
             <div className="space-y-2">
               <div className="flex justify-between items-end">
-                <span className="text-2xl font-black text-slate-800">
+                <span className="text-2xl font-black text-white text-neon-pink">
                   {event._count.participants}
                 </span>
-                <span className="text-xs font-semibold text-slate-400 pb-1">
+                <span className="text-[11px] font-semibold text-zinc-450 pb-1">
                   joined {event.maxParticipants > 0 ? `out of ${event.maxParticipants}` : 'performers'}
                 </span>
               </div>
 
               {/* Progress Bar */}
               {event.maxParticipants > 0 && (
-                <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                <div className="w-full bg-white/10 h-2.5 rounded-full overflow-hidden">
                   <div
-                    className="bg-gradient-to-r from-indigo-600 to-sky-500 h-full rounded-full transition-all duration-500"
+                    className="bg-gradient-to-r from-pink-500 to-cyan-400 h-full rounded-full transition-all duration-500 shadow-[0_0_8px_rgba(255,0,127,0.4)]"
                     style={{
                       width: `${Math.min(
                         100,
@@ -457,13 +464,13 @@ export default function EventDetailPage(props: PageProps) {
               )}
 
               {spotsRemaining !== null && (
-                <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex justify-between">
+                <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-wide flex justify-between">
                   <span>
                     {spotsRemaining > 0 ? `${spotsRemaining} spots available` : 'Event is full!'}
                   </span>
                   {joinStatus === 'WAITLIST' && (
-                    <span className="text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-md font-extrabold normal-case">
-                      You are on Waitlist ⏳
+                    <span className="text-amber-400 bg-amber-500/10 border border-amber-500/20 px-1.5 py-0.5 rounded-md font-extrabold normal-case">
+                      On Waitlist ⏳
                     </span>
                   )}
                 </p>
@@ -471,20 +478,20 @@ export default function EventDetailPage(props: PageProps) {
             </div>
 
             {isOrganizer ? (
-              <div className="w-full flex items-center justify-center space-x-2 bg-slate-50 border border-slate-200 text-slate-500 py-3.5 rounded-xl text-sm font-semibold select-none">
+              <div className="w-full flex items-center justify-center space-x-2 bg-white/5 border border-white/5 text-zinc-400 py-3.5 rounded-xl text-sm font-semibold select-none">
                 <ShieldCheck size={18} />
-                <span>You are organizing this event</span>
+                <span>You are organizing this gig</span>
               </div>
             ) : (
               <button
                 onClick={handleJoinToggle}
                 disabled={joinLoading}
-                className={`w-full font-bold py-3.5 px-4 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer shadow-md flex items-center justify-center text-sm ${
+                className={`w-full font-black uppercase tracking-wider py-3.5 px-4 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer shadow-md flex items-center justify-center text-xs ${
                   joinStatus === 'JOINED'
-                    ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-100 hover:text-emerald-800 shadow-emerald-500/5'
+                    ? 'bg-emerald-500/10 hover:bg-emerald-500/25 text-emerald-400 border border-emerald-500/20 shadow-[0_0_10px_rgba(16,185,129,0.15)]'
                     : joinStatus === 'WAITLIST'
-                    ? 'bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-100 shadow-amber-500/5'
-                    : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-500/10'
+                    ? 'bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/20'
+                    : 'bg-gradient-to-r from-pink-500 to-purple-650 hover:from-pink-650 hover:to-purple-700 text-white shadow-[0_0_15px_rgba(255,0,127,0.3)] hover:shadow-[0_0_22px_rgba(255,0,127,0.5)]'
                 }`}
               >
                 {joinLoading ? (
@@ -499,13 +506,13 @@ export default function EventDetailPage(props: PageProps) {
                     <span>Leave Waitlist</span>
                   </span>
                 ) : (
-                  <span>Join Crew</span>
+                  <span>Join Vibe Crew</span>
                 )}
               </button>
             )}
 
-            <div className="border-t border-slate-50 pt-4 flex flex-col space-y-3 text-xs font-semibold text-slate-500">
-              <div className="flex items-center space-x-2.5 text-slate-400">
+            <div className="border-t border-white/5 pt-4 flex flex-col space-y-3 text-xs font-semibold text-zinc-500">
+              <div className="flex items-center space-x-2.5 text-zinc-500">
                 <Users size={14} />
                 <span>One-click join. Waitlist support.</span>
               </div>
@@ -513,9 +520,9 @@ export default function EventDetailPage(props: PageProps) {
           </div>
 
           {/* Organizer Card */}
-          <div className="bg-white rounded-3xl border border-slate-100 p-6 shadow-premium space-y-4">
-            <h3 className="font-bold text-slate-800 text-sm tracking-tight border-b border-slate-50 pb-2">
-              Organizer Host
+          <div className="bg-zinc-950/40 backdrop-blur-md rounded-[24px] border border-white/5 p-6 shadow-premium space-y-4 text-white">
+            <h3 className="font-bold text-white text-xs tracking-wider uppercase border-b border-white/5 pb-2">
+              Gig Host
             </h3>
 
             <div className="flex items-center justify-between">
@@ -527,20 +534,20 @@ export default function EventDetailPage(props: PageProps) {
                     className="h-10 w-10 rounded-full object-cover shrink-0"
                   />
                 ) : (
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-indigo-500 to-sky-400 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-pink-500 to-purple-650 text-white flex items-center justify-center font-bold text-sm shrink-0">
                     {event.organizer.name.charAt(0).toUpperCase()}
                   </div>
                 )}
                 <div>
-                  <h4 className="font-bold text-slate-800 text-sm leading-snug">{event.organizer.name}</h4>
-                  <p className="text-[10px] font-semibold text-slate-400 flex items-center gap-1">
+                  <h4 className="font-bold text-white text-sm leading-snug">{event.organizer.name}</h4>
+                  <p className="text-[10px] font-semibold text-zinc-400 flex items-center gap-1">
                     <span>{event.organizer._count?.followers || 0} followers</span>
                     {event.organizer.instagram && (
                       <a
                         href={`https://instagram.com/${event.organizer.instagram}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex text-indigo-500 hover:text-indigo-600 transition-colors"
+                        className="inline-flex text-pink-400 hover:text-pink-300 transition-colors"
                       >
                         <InstagramIcon className="h-3 w-3" />
                       </a>
@@ -556,8 +563,8 @@ export default function EventDetailPage(props: PageProps) {
                   disabled={followLoading}
                   className={`text-xs font-bold py-1.5 px-3 rounded-lg border flex items-center gap-1 cursor-pointer transition-all ${
                     isFollowingOrganizer
-                      ? 'bg-slate-50 border-slate-200 text-slate-500 hover:bg-slate-100 hover:text-slate-600'
-                      : 'bg-indigo-50 border-indigo-100 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-700'
+                      ? 'bg-white/5 border-white/10 text-zinc-400 hover:bg-white/10 hover:text-white'
+                      : 'bg-pink-500/10 border-pink-500/20 text-pink-400 hover:bg-pink-500/20 hover:text-pink-300'
                   }`}
                 >
                   {isFollowingOrganizer ? (
@@ -575,16 +582,16 @@ export default function EventDetailPage(props: PageProps) {
               )}
             </div>
 
-            <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50 space-y-2">
+            <div className="bg-white/5 rounded-xl p-3.5 border border-white/5 space-y-2">
               <div className="flex items-start space-x-2 text-xs">
-                <Phone size={13} className="text-slate-400 shrink-0 mt-0.5" />
+                <Phone size={13} className="text-zinc-500 shrink-0 mt-0.5" />
                 <div className="space-y-0.5">
-                  <p className="font-bold text-slate-400 uppercase tracking-wide text-[9px]">Contact Link</p>
+                  <p className="font-bold text-zinc-500 uppercase tracking-wide text-[9px]">Contact Link</p>
                   <a
                     href={event.organizerContact}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-semibold text-indigo-600 hover:underline break-all"
+                    className="font-semibold text-cyan-400 hover:underline break-all"
                   >
                     {event.organizerContact}
                   </a>
@@ -594,10 +601,10 @@ export default function EventDetailPage(props: PageProps) {
           </div>
 
           {/* Participant List */}
-          <div className="bg-white rounded-3xl border border-slate-100 p-6 shadow-premium space-y-4">
-            <h3 className="font-bold text-slate-800 text-sm tracking-tight border-b border-slate-50 pb-2 flex items-center justify-between">
-              <span>Attendees Crew</span>
-              <span className="text-xs text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md font-bold">
+          <div className="bg-zinc-950/40 backdrop-blur-md rounded-[24px] border border-white/5 p-6 shadow-premium space-y-4 text-white">
+            <h3 className="font-bold text-white text-xs tracking-wider uppercase border-b border-white/5 pb-2 flex items-center justify-between">
+              <span>Vibe Crew list</span>
+              <span className="text-xs text-pink-400 bg-pink-500/10 border border-pink-500/20 px-2.5 py-0.5 rounded-md font-bold">
                 {event.participants.filter((p: any) => p.status === 'JOINED').length}
               </span>
             </h3>
@@ -615,14 +622,14 @@ export default function EventDetailPage(props: PageProps) {
                           className="h-7 w-7 rounded-full object-cover shrink-0"
                         />
                       ) : (
-                        <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-indigo-400 to-sky-300 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                        <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-pink-500 to-purple-650 text-white flex items-center justify-center font-bold text-xs shrink-0">
                           {participant.user.name.charAt(0).toUpperCase()}
                         </div>
                       )}
-                      <span className="text-xs font-semibold text-slate-700">{participant.user.name}</span>
+                      <span className="text-xs font-semibold text-zinc-300">{participant.user.name}</span>
                     </div>
                     {participant.userId === event.organizerId && (
-                      <span className="text-[9px] font-bold text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded-sm uppercase tracking-wide">
+                      <span className="text-[9px] font-bold text-pink-400 bg-pink-500/10 border border-pink-500/20 px-1.5 py-0.5 rounded-sm uppercase tracking-wide">
                         Host
                       </span>
                     )}
@@ -635,16 +642,16 @@ export default function EventDetailPage(props: PageProps) {
 
       {/* Report Modal */}
       {showReportModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
-          <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-slate-100 flex flex-col overflow-hidden animate-scale-up">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
-              <div className="flex items-center space-x-2 text-rose-600">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+          <div className="bg-zinc-950 w-full max-w-md rounded-2xl shadow-2xl border border-white/10 flex flex-col overflow-hidden animate-scale-up text-white">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+              <div className="flex items-center space-x-2 text-rose-500">
                 <AlertTriangle size={18} />
-                <h3 className="font-bold text-slate-800 text-base">Report Event</h3>
+                <h3 className="font-bold text-white text-base">Report Event</h3>
               </div>
               <button
                 onClick={() => setShowReportModal(false)}
-                className="text-slate-400 hover:text-slate-600 hover:bg-slate-50 p-1.5 rounded-lg transition-colors cursor-pointer"
+                className="text-zinc-400 hover:text-white hover:bg-white/5 p-1.5 rounded-lg transition-colors cursor-pointer"
               >
                 <X size={16} />
               </button>
@@ -652,13 +659,13 @@ export default function EventDetailPage(props: PageProps) {
 
             <form onSubmit={handleReportSubmit} className="p-6 space-y-4">
               <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">
                   Reason for Reporting
                 </label>
                 <select
                   value={reportReason}
                   onChange={(e) => setReportReason(e.target.value)}
-                  className="w-full bg-slate-50 text-sm text-slate-800 px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:outline-none transition-all cursor-pointer font-semibold"
+                  className="w-full bg-white/5 text-sm text-white px-4 py-2.5 rounded-xl border border-white/10 focus:border-pink-500 focus:outline-none transition-all cursor-pointer font-semibold"
                 >
                   <option value="Safety concerns">Safety concerns</option>
                   <option value="Inappropriate content">Inappropriate content</option>
@@ -668,7 +675,7 @@ export default function EventDetailPage(props: PageProps) {
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">
                   Additional Details
                 </label>
                 <textarea
@@ -676,7 +683,7 @@ export default function EventDetailPage(props: PageProps) {
                   value={reportDesc}
                   onChange={(e) => setReportDesc(e.target.value)}
                   placeholder="Provide additional details to help us investigate (optional)"
-                  className="w-full bg-slate-50 text-sm text-slate-800 placeholder-slate-400 p-4 rounded-xl border border-slate-200 focus:border-indigo-500 focus:outline-none transition-all font-medium resize-none"
+                  className="w-full bg-white/5 text-sm text-white placeholder-zinc-500 p-4 rounded-xl border border-white/10 focus:border-pink-500 focus:outline-none transition-all font-medium resize-none"
                 />
               </div>
 
@@ -684,7 +691,7 @@ export default function EventDetailPage(props: PageProps) {
                 <button
                   type="button"
                   onClick={() => setShowReportModal(false)}
-                  className="text-xs font-bold text-slate-500 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 px-4 py-2.5 rounded-xl transition-all cursor-pointer"
+                  className="text-xs font-bold text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 px-4 py-2.5 rounded-xl transition-all cursor-pointer"
                 >
                   Cancel
                 </button>

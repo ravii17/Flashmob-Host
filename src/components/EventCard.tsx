@@ -50,14 +50,14 @@ export default function EventCard({ event, onStateChange }: EventCardProps) {
   const [joinLoading, setJoinLoading] = useState(false);
   const [bookmarkLoading, setBookmarkLoading] = useState(false);
 
-  // Category Colors Map
+  // Category Colors Map (neon/dark vibe)
   const categoryColors: Record<string, string> = {
-    Dance: 'from-blue-500 to-sky-500 text-blue-600 bg-blue-50 border-blue-100',
-    Music: 'from-violet-500 to-purple-500 text-violet-600 bg-violet-50 border-violet-100',
-    Social: 'from-amber-500 to-orange-500 text-amber-600 bg-amber-50 border-amber-100',
-    Fitness: 'from-emerald-500 to-teal-500 text-emerald-600 bg-emerald-50 border-emerald-100',
-    Celebration: 'from-rose-500 to-pink-500 text-rose-600 bg-rose-50 border-rose-100',
-    Other: 'from-slate-500 to-slate-600 text-slate-600 bg-slate-50 border-slate-100',
+    Dance: 'from-[#00F0FF] to-blue-500 text-[#00F0FF] bg-[#00F0FF]/10 border-[#00F0FF]/20',
+    Music: 'from-[#FF007F] to-violet-500 text-[#FF007F] bg-[#FF007F]/10 border-[#FF007F]/20',
+    Social: 'from-[#39FF14] to-emerald-500 text-[#39FF14] bg-[#39FF14]/10 border-[#39FF14]/20',
+    Fitness: 'from-[#9D00FF] to-indigo-500 text-[#9D00FF] bg-[#9D00FF]/10 border-[#9D00FF]/20',
+    Celebration: 'from-amber-400 to-orange-500 text-amber-400 bg-amber-400/10 border-amber-400/20',
+    Other: 'from-zinc-400 to-zinc-500 text-zinc-300 bg-zinc-800/40 border-zinc-700/30',
   };
 
   const currentCategoryClass = categoryColors[event.category] || categoryColors.Other;
@@ -85,7 +85,7 @@ export default function EventCard({ event, onStateChange }: EventCardProps) {
       if (res.ok) {
         setIsJoined(data.joined);
         setParticipantsCount((prev) => (data.joined ? prev + 1 : prev - 1));
-        toast.success(data.joined ? 'You joined the flashmob!' : 'You left the flashmob.');
+        toast.success(data.joined ? 'You joined the flashmob crew!' : 'You left the crew.');
         if (onStateChange) onStateChange();
       } else {
         toast.error(data.error || 'Failed to toggle join state');
@@ -134,9 +134,12 @@ export default function EventCard({ event, onStateChange }: EventCardProps) {
   });
 
   return (
-    <div className="group relative bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-slate-200 shadow-premium hover:shadow-premium-hover transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
+    <div className="group relative bg-zinc-950/40 backdrop-blur-md rounded-[24px] overflow-hidden border border-white/5 hover:border-pink-500/30 shadow-premium hover:shadow-[0_0_25px_rgba(255,0,127,0.15)] transition-all duration-300 flex flex-col h-full hover:-translate-y-1.5 z-10">
+      {/* Holographic overlay */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
       {/* Event Image & Bookmark */}
-      <Link href={`/events/${event.id}`} className="relative h-48 w-full block bg-slate-100 overflow-hidden">
+      <Link href={`/events/${event.id}`} className="relative h-48 w-full block bg-zinc-900 overflow-hidden border-b border-white/5">
         {event.image ? (
           <img
             src={event.image}
@@ -144,14 +147,14 @@ export default function EventCard({ event, onStateChange }: EventCardProps) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-tr from-slate-100 to-slate-50 text-slate-400">
+          <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-tr from-zinc-900 to-zinc-950 text-zinc-650">
             <Sparkles size={32} className="opacity-40 mb-1" />
-            <span className="text-xs font-medium">No banner image</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider">No banner image</span>
           </div>
         )}
 
         {/* Category Badge overlay */}
-        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-xs font-semibold px-2.5 py-1 rounded-lg border border-slate-200/50 shadow-sm text-slate-800">
+        <div className={`absolute top-3 left-3 bg-zinc-950/80 backdrop-blur-md text-[9px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-lg border border-white/10 shadow-sm text-white`}>
           {event.category}
         </div>
 
@@ -159,30 +162,40 @@ export default function EventCard({ event, onStateChange }: EventCardProps) {
         <button
           onClick={handleBookmarkToggle}
           disabled={bookmarkLoading}
-          className="absolute top-3 right-3 h-8 w-8 rounded-full bg-white/95 backdrop-blur-xs flex items-center justify-center text-slate-400 hover:text-rose-500 border border-slate-200/40 shadow-sm active:scale-90 transition-all cursor-pointer"
+          className="absolute top-3 right-3 h-8 w-8 rounded-full bg-zinc-950/80 backdrop-blur-md flex items-center justify-center text-zinc-400 hover:text-pink-500 border border-white/10 shadow-sm active:scale-90 transition-all cursor-pointer hover:border-pink-500/30"
         >
           <Heart
-            size={16}
-            className={`${isBookmarked ? 'text-rose-500 fill-rose-500 scale-110' : ''} transition-all duration-200`}
+            size={14}
+            className={`${isBookmarked ? 'text-pink-500 fill-pink-500 scale-110' : ''} transition-all duration-200`}
           />
         </button>
+
+        {/* Pulsing Equalizer on Image Hover */}
+        <div className="absolute bottom-3 right-3 bg-zinc-950/85 border border-white/10 backdrop-blur-md p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="eq-container">
+            <div className="eq-bar" />
+            <div className="eq-bar" />
+            <div className="eq-bar" />
+            <div className="eq-bar" />
+          </div>
+        </div>
       </Link>
 
       {/* Card Content */}
       <div className="p-5 flex flex-col flex-1">
         <div className="flex-1">
           {/* Metadata */}
-          <div className="flex flex-wrap items-center gap-y-2 text-xs text-slate-500 mb-2 gap-x-3">
-            <span className="flex items-center space-x-1.5 shrink-0">
-              <Calendar size={13} className="text-slate-400" />
+          <div className="flex flex-wrap items-center gap-y-2 text-[10px] text-zinc-400 mb-2 gap-x-3 font-semibold">
+            <span className="flex items-center space-x-1.5 shrink-0 bg-white/5 px-2 py-0.5 rounded">
+              <Calendar size={11} className="text-pink-500" />
               <span>{formattedDate}</span>
             </span>
-            <span className="flex items-center space-x-1.5 truncate">
-              <MapPin size={13} className="text-slate-400" />
+            <span className="flex items-center space-x-1.5 truncate bg-white/5 px-2 py-0.5 rounded">
+              <MapPin size={11} className="text-cyan-400" />
               <span className="truncate">{event.city}</span>
             </span>
             {event.distance !== undefined && event.distance !== null && (
-              <span className="text-[10px] font-extrabold text-indigo-650 bg-indigo-50 px-2 py-0.5 rounded-md shrink-0">
+              <span className="text-[9px] font-black text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 px-2 py-0.5 rounded">
                 {event.distance.toFixed(1)} km away
               </span>
             )}
@@ -190,36 +203,36 @@ export default function EventCard({ event, onStateChange }: EventCardProps) {
 
           {/* Title */}
           <Link href={`/events/${event.id}`}>
-            <h3 className="font-bold text-slate-800 text-base leading-snug group-hover:text-blue-600 transition-colors line-clamp-1 mb-2">
+            <h3 className="font-black text-white text-base leading-snug group-hover:text-pink-500 transition-colors line-clamp-1 mb-2">
               {event.title}
             </h3>
           </Link>
 
           {/* Description Snippet */}
-          <p className="text-slate-500 text-sm line-clamp-2 mb-4 leading-relaxed">
+          <p className="text-zinc-400 text-xs line-clamp-2 mb-4 leading-relaxed font-medium">
             {event.description}
           </p>
         </div>
 
         {/* Bottom Actions Row */}
-        <div className="pt-4 border-t border-slate-50 flex items-center justify-between mt-auto">
+        <div className="pt-4 border-t border-white/5 flex items-center justify-between mt-auto">
           {/* Joined Users Avatars */}
           <div className="flex items-center space-x-2">
             <div className="flex -space-x-1.5 overflow-hidden">
               {event.participants.slice(0, 3).map((p, idx) => (
-                <div key={idx} className="h-6 w-6 rounded-full border border-white overflow-hidden shrink-0">
+                <div key={idx} className="h-6 w-6 rounded-full border border-zinc-950 overflow-hidden shrink-0">
                   {p.user.avatar ? (
                     <img src={p.user.avatar} alt={p.user.name} className="h-full w-full object-cover" />
                   ) : (
-                    <div className="h-full w-full bg-gradient-to-tr from-blue-400 to-sky-300 text-white flex items-center justify-center text-[9px] font-bold">
+                    <div className="h-full w-full bg-gradient-to-tr from-pink-500 to-purple-650 text-white flex items-center justify-center text-[8px] font-bold">
                       {p.user.name.charAt(0).toUpperCase()}
                     </div>
                   )}
                 </div>
               ))}
             </div>
-            <span className="text-xs font-semibold text-slate-600 flex items-center space-x-1">
-              <Users size={12} className="text-slate-400 mr-0.5" />
+            <span className="text-[11px] font-semibold text-zinc-400 flex items-center space-x-1">
+              <Users size={11} className="text-zinc-500 mr-0.5" />
               <span>
                 {participantsCount}
                 {event.maxParticipants > 0 && ` / ${event.maxParticipants}`}
@@ -229,26 +242,26 @@ export default function EventCard({ event, onStateChange }: EventCardProps) {
 
           {/* Action Join Button */}
           {isOrganizer ? (
-            <span className="text-[11px] font-semibold text-slate-400 bg-slate-50 border border-slate-200/50 px-2.5 py-1.5 rounded-lg select-none">
+            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 bg-white/5 border border-white/5 px-2.5 py-1.5 rounded-lg select-none">
               Organizing
             </span>
           ) : (
             <button
               onClick={handleJoinToggle}
               disabled={joinLoading}
-              className={`text-xs font-semibold px-4 py-2 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer shadow-sm ${
+              className={`text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer shadow-sm ${
                 isJoined
-                  ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-100 hover:text-emerald-800'
-                  : 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/10 hover:shadow-md'
+                  ? 'bg-emerald-500/10 hover:bg-emerald-500/25 text-emerald-400 border border-emerald-500/20'
+                  : 'bg-gradient-to-r from-pink-500 to-purple-650 hover:from-pink-600 hover:to-purple-700 text-white shadow-[0_0_12px_rgba(255,0,127,0.2)]'
               }`}
             >
               {joinLoading ? (
-                <div className="h-4 w-12 flex items-center justify-center">
-                  <div className="h-3 w-3 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+                <div className="h-3 w-10 flex items-center justify-center">
+                  <div className="h-2.5 w-2.5 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
                 </div>
               ) : isJoined ? (
                 <span className="flex items-center space-x-1">
-                  <Check size={12} />
+                  <Check size={11} />
                   <span>Joined</span>
                 </span>
               ) : (

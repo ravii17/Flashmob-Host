@@ -150,11 +150,11 @@ export default function LifestyleLandingPage() {
   return (
     <div className="bg-zinc-950 text-white min-h-screen relative overflow-hidden font-sans selection:bg-stone-200 selection:text-zinc-900">
       
-      {/* Background Glow Hues (Sophisticated blur effects) */}
-      <div className="absolute top-[-10%] left-[-15%] w-[45vw] h-[45vw] rounded-full bg-orange-500/10 blur-[130px] pointer-events-none" />
-      <div className="absolute top-[15%] right-[-15%] w-[50vw] h-[50vw] rounded-full bg-rose-500/10 blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[20%] left-[5%] w-[45vw] h-[45vw] rounded-full bg-teal-500/10 blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
+      {/* Background Glow Hues (Sophisticated concert stage lights) */}
+      <div className="absolute top-[-10%] left-[-15%] w-[45vw] h-[45vw] rounded-full bg-[#FF007F]/10 blur-[130px] pointer-events-none animate-float-light" />
+      <div className="absolute top-[15%] right-[-15%] w-[50vw] h-[50vw] rounded-full bg-[#00F0FF]/10 blur-[140px] pointer-events-none animate-float-light-delayed" />
+      <div className="absolute bottom-[20%] left-[5%] w-[45vw] h-[45vw] rounded-full bg-[#9D00FF]/10 blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-[#00F0FF]/5 blur-[120px] pointer-events-none" />
 
       {/* Top Navigation Bar with Glassmorphism */}
       <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-zinc-950/40 backdrop-blur-xl transition-all duration-300">
@@ -163,10 +163,10 @@ export default function LifestyleLandingPage() {
           {/* Brand Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2 text-white font-black text-xl tracking-tighter group transition-transform active:scale-98">
-              <span className="bg-white p-1.5 rounded-xl text-zinc-950 font-bold group-hover:scale-105 duration-300 flex items-center justify-center">
-                <Sparkles size={16} className="fill-zinc-950" />
+              <span className="bg-gradient-to-tr from-pink-500 to-purple-650 p-1.5 rounded-xl text-white font-bold group-hover:scale-105 duration-300 flex items-center justify-center shadow-[0_0_8px_rgba(255,0,127,0.4)]">
+                <Sparkles size={16} className="fill-white" />
               </span>
-              <span className="bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent tracking-tighter font-black">
+              <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent tracking-tighter font-black text-neon-pink">
                 FlashMob
               </span>
             </Link>
@@ -190,11 +190,11 @@ export default function LifestyleLandingPage() {
                     {active && (
                       <motion.span
                         layoutId="activeTabPill"
-                        className="absolute inset-0 bg-[#F5F5F0] rounded-full"
+                        className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-650 rounded-full shadow-[0_0_10px_rgba(255,0,127,0.3)]"
                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                       />
                     )}
-                    <span className={`relative z-10 transition-colors duration-300 ${active ? 'text-zinc-950' : 'text-zinc-400 hover:text-white'}`}>
+                    <span className={`relative z-10 transition-colors duration-300 ${active ? 'text-white font-black' : 'text-zinc-400 hover:text-white'}`}>
                       {tab}
                     </span>
                   </button>
@@ -210,7 +210,7 @@ export default function LifestyleLandingPage() {
                 placeholder={`Search ${activeTab.toLowerCase()}...`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-56 focus:w-72 bg-white/5 hover:bg-white/8 border border-white/5 hover:border-white/10 focus:border-white/20 rounded-full pl-10 pr-4 py-2 text-xs font-medium text-white placeholder-zinc-500 focus:outline-none transition-all duration-300 focus:ring-1 focus:ring-white/10"
+                className="w-56 focus:w-72 bg-white/5 hover:bg-white/8 border border-white/5 hover:border-pink-500/30 rounded-full pl-10 pr-4 py-2 text-xs font-medium text-white placeholder-zinc-500 focus:outline-none transition-all duration-300 focus:ring-1 focus:ring-pink-500/25"
               />
             </div>
           </div>
@@ -227,7 +227,7 @@ export default function LifestyleLandingPage() {
             {user ? (
               <Link
                 href="/dashboard"
-                className="h-9 w-9 rounded-full bg-gradient-to-tr from-orange-400 to-rose-500 text-white flex items-center justify-center font-bold text-xs border border-white/10 shadow-lg hover:scale-105 transition-transform"
+                className="h-9 w-9 rounded-full bg-gradient-to-tr from-pink-500 to-purple-650 text-white flex items-center justify-center font-bold text-xs border border-white/10 shadow-[0_0_10px_rgba(255,0,127,0.3)] hover:scale-105 transition-transform"
                 title="Go to Dashboard"
               >
                 {user.name.charAt(0).toUpperCase()}
@@ -235,7 +235,7 @@ export default function LifestyleLandingPage() {
             ) : (
               <Link
                 href="/signup"
-                className="bg-white hover:bg-stone-100 text-zinc-950 font-black text-xs px-5 py-2.5 rounded-full transition-all active:scale-95 shadow-md shadow-white/5"
+                className="bg-gradient-to-r from-pink-500 to-purple-650 hover:from-pink-600 hover:to-purple-700 text-white font-black text-xs px-5 py-2.5 rounded-full transition-all active:scale-95 shadow-[0_0_15px_rgba(255,0,127,0.35)]"
               >
                 Sign Up
               </Link>
@@ -253,7 +253,7 @@ export default function LifestyleLandingPage() {
             placeholder={`Search ${activeTab.toLowerCase()}...`}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white/5 border border-white/5 rounded-full pl-11 pr-4 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white/20"
+            className="w-full bg-white/5 border border-white/5 rounded-full pl-11 pr-4 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-pink-500/30"
           />
         </div>
         <div className="flex space-x-1 overflow-x-auto no-scrollbar py-1">
@@ -267,7 +267,7 @@ export default function LifestyleLandingPage() {
                   setSearchQuery('');
                 }}
                 className={`flex-shrink-0 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                  active ? 'bg-[#F5F5F0] text-zinc-950' : 'bg-white/5 text-zinc-400 hover:text-white'
+                  active ? 'bg-gradient-to-r from-pink-500 to-purple-650 text-white shadow-[0_0_8px_rgba(255,0,127,0.3)]' : 'bg-white/5 text-zinc-400 hover:text-white'
                 }`}
               >
                 {tab}
@@ -287,25 +287,25 @@ export default function LifestyleLandingPage() {
           <div className="lg:col-span-7 space-y-8 lg:pr-8">
             
             {/* Category / Trend Badge with glow indicator */}
-            <div className="inline-flex items-center space-x-2.5 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-zinc-350">
-              <span className="h-1.5 w-1.5 rounded-full bg-rose-500 animate-ping" />
+            <div className="inline-flex items-center space-x-2.5 bg-pink-500/10 border border-pink-500/20 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-pink-400 shadow-[0_0_10px_rgba(255,0,127,0.15)]">
+              <span className="h-1.5 w-1.5 rounded-full bg-pink-500 animate-ping" />
               <span>{featuredEvent.badge}</span>
             </div>
 
             {/* Prominent Bold Headline */}
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-none">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-none text-neon-pink">
                 {featuredEvent.title}
               </h1>
               
               {/* High Readability Event Details Row */}
               <div className="flex flex-wrap gap-4 text-xs font-semibold text-zinc-400">
-                <span className="flex items-center space-x-1.5 bg-white/5 px-3 py-1 rounded-md">
-                  <Calendar size={13} className="text-rose-400" />
+                <span className="flex items-center space-x-1.5 bg-white/5 px-3 py-1 rounded-md border border-white/5">
+                  <Calendar size={13} className="text-pink-400" />
                   <span>{featuredEvent.date}</span>
                 </span>
-                <span className="flex items-center space-x-1.5 bg-white/5 px-3 py-1 rounded-md">
-                  <MapPin size={13} className="text-teal-400" />
+                <span className="flex items-center space-x-1.5 bg-white/5 px-3 py-1 rounded-md border border-white/5">
+                  <MapPin size={13} className="text-cyan-400" />
                   <span>{featuredEvent.location}</span>
                 </span>
               </div>
@@ -320,8 +320,8 @@ export default function LifestyleLandingPage() {
             <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-6">
               
               {/* Pricing Display */}
-              <div className="space-y-1 bg-white/5 border border-white/10 rounded-2xl px-5 py-3 w-full sm:w-auto">
-                <p className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Pricing Starts At</p>
+              <div className="space-y-1 bg-zinc-900/50 border border-white/10 rounded-2xl px-5 py-3 w-full sm:w-auto">
+                <p className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Pricing Starts At</p>
                 <div className="flex items-baseline space-x-1">
                   <span className="text-2xl font-black text-white">{featuredEvent.priceTag.split(' ')[0]}</span>
                   <span className="text-xs font-medium text-zinc-500">{featuredEvent.priceTag.split(' ')[1] || 'onwards'}</span>
@@ -332,9 +332,9 @@ export default function LifestyleLandingPage() {
               <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
                 <Link
                   href={featuredEvent.link}
-                  className="bg-white hover:bg-stone-100 text-zinc-950 font-black text-xs px-8 py-4.5 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-white/5 flex items-center justify-center space-x-2 shrink-0 active:scale-98 w-full sm:w-auto"
+                  className="bg-gradient-to-r from-pink-500 to-purple-650 hover:from-pink-600 hover:to-purple-700 text-white font-black text-xs px-8 py-4.5 rounded-2xl transition-all duration-300 shadow-[0_0_15px_rgba(255,0,127,0.3)] hover:shadow-[0_0_22px_rgba(255,0,127,0.5)] flex items-center justify-center space-x-2 shrink-0 active:scale-98 w-full sm:w-auto"
                 >
-                  <Ticket size={14} className="fill-zinc-950" />
+                  <Ticket size={14} className="fill-white" />
                   <span>Book Tickets Now</span>
                 </Link>
                 
@@ -367,14 +367,14 @@ export default function LifestyleLandingPage() {
             <motion.div
               whileHover={{ y: -10, rotate: 1 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="relative w-full max-w-[340px] aspect-[3/4.5] rounded-[32px] overflow-hidden border border-white/10 shadow-2xl group cursor-pointer"
+              className="relative w-full max-w-[340px] aspect-[3/4.5] rounded-[32px] overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.85)] group cursor-pointer"
             >
               
               {/* Neon border glow layer */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/30 to-rose-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
               
-              {/* Background gradient structure showing blue & red layout */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-zinc-900 to-rose-700 z-0 scale-102 blur-[2px]" />
+              {/* Background gradient structure */}
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-600 via-zinc-950 to-cyan-700 z-0 scale-102 blur-[2px]" />
               
               {/* Promotional Figure Image Asset */}
               <img
@@ -384,24 +384,24 @@ export default function LifestyleLandingPage() {
               />
               
               {/* Dark overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent z-20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent z-20" />
               
               {/* Card Foreground Details */}
               <div className="absolute bottom-0 inset-x-0 p-6 z-30 space-y-4">
                 
                 {/* Event Category Tag */}
                 <div className="flex items-center justify-between">
-                  <span className="bg-[#F5F5F0] text-zinc-950 text-[9px] font-black uppercase px-2.5 py-1 rounded-full tracking-wider">
+                  <span className="bg-gradient-to-r from-pink-500 to-purple-650 text-white text-[9px] font-black uppercase px-2.5 py-1.5 rounded-full tracking-wider shadow-[0_0_8px_rgba(255,0,127,0.3)]">
                     {activeTab} Feature
                   </span>
                   <div className="flex items-center space-x-1 text-xs font-bold text-white bg-black/40 backdrop-blur-md border border-white/10 px-2 py-0.5 rounded-lg">
-                    <Flame size={11} className="text-orange-500 fill-orange-500 animate-pulse" />
+                    <Flame size={11} className="text-pink-500 fill-pink-500 animate-pulse" />
                     <span>Live Event</span>
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="text-lg font-black text-white tracking-tight leading-tight group-hover:text-stone-100 transition-colors">
+                  <h3 className="text-lg font-black text-white tracking-tight leading-tight group-hover:text-pink-450 transition-colors">
                     {featuredEvent.title}
                   </h3>
                   <p className="text-[10px] font-semibold text-zinc-400 flex items-center gap-1">
@@ -410,12 +410,12 @@ export default function LifestyleLandingPage() {
                   </p>
                 </div>
 
-                <div className="pt-2 flex items-center justify-between border-t border-white/5">
+                <div className="pt-2 flex items-center justify-between border-t border-white/10">
                   <div className="text-left">
-                    <p className="text-[8px] uppercase font-bold text-zinc-500">Booking Price</p>
+                    <p className="text-[8px] uppercase font-bold text-zinc-550">Booking Price</p>
                     <p className="text-xs font-black text-white">{featuredEvent.priceTag}</p>
                   </div>
-                  <span className="bg-white/10 group-hover:bg-white group-hover:text-zinc-950 p-2.5 rounded-full transition-all duration-300 text-white">
+                  <span className="bg-pink-500 group-hover:bg-white group-hover:text-zinc-950 p-2.5 rounded-full transition-all duration-300 text-white shadow-[0_0_8px_rgba(255,0,127,0.4)]">
                     <Compass size={14} className="group-hover:rotate-45 transition-transform duration-500" />
                   </span>
                 </div>
@@ -434,7 +434,7 @@ export default function LifestyleLandingPage() {
             <div className="space-y-1">
               <h2 className="text-2xl font-black tracking-tight text-white flex items-center space-x-2">
                 <span>Trending {activeTab} Experiences</span>
-                <Flame size={18} className="text-rose-500 fill-rose-500 animate-pulse" />
+                <Flame size={18} className="text-pink-500 fill-pink-500 animate-pulse" />
               </h2>
               <p className="text-xs text-zinc-400 font-medium">Handpicked events, dining assemblies, and entertainment happening nearby.</p>
             </div>
@@ -447,8 +447,7 @@ export default function LifestyleLandingPage() {
             )}
           </div>
 
-          {/* Grid Layout of Cards */}
-          <AnimatePresence mode="popLayout">
+                   <AnimatePresence mode="popLayout">
             {filteredEvents.length > 0 ? (
               <motion.div
                 layout
@@ -464,10 +463,13 @@ export default function LifestyleLandingPage() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.4, delay: index * 0.05 }}
-                      className="bg-zinc-900/40 backdrop-blur-md border border-white/5 hover:border-white/10 rounded-3xl overflow-hidden shadow-xl flex flex-col h-full group"
+                      className="bg-zinc-950/45 backdrop-blur-md border border-white/5 hover:border-pink-500/30 rounded-[24px] overflow-hidden shadow-premium hover:shadow-[0_0_25px_rgba(255,0,127,0.15)] flex flex-col h-full group transition-all duration-300 hover:-translate-y-1.5 relative"
                     >
+                      {/* Holographic overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
                       {/* Image container */}
-                      <div className="relative aspect-[16/10] overflow-hidden bg-zinc-800">
+                      <div className="relative aspect-[16/10] overflow-hidden bg-zinc-900 border-b border-white/5">
                         <img
                           src={event.image}
                           alt={event.title}
@@ -479,7 +481,7 @@ export default function LifestyleLandingPage() {
                         <button
                           onClick={() => handleRSVP(event.id)}
                           className={`absolute top-4 right-4 p-2 rounded-full backdrop-blur-md border border-white/10 transition-all cursor-pointer ${
-                            isRsvped ? 'bg-rose-500 text-white border-rose-400' : 'bg-black/40 text-zinc-300 hover:text-white hover:bg-black/60'
+                            isRsvped ? 'bg-pink-500 text-white border-pink-400 shadow-[0_0_8px_rgba(255,0,127,0.4)]' : 'bg-black/40 text-zinc-300 hover:text-white hover:bg-black/60'
                           }`}
                         >
                           <Heart size={14} className={isRsvped ? 'fill-white' : ''} />
@@ -488,10 +490,20 @@ export default function LifestyleLandingPage() {
                         {/* Event Tags Overlay */}
                         <div className="absolute bottom-4 left-4 flex gap-1.5">
                           {event.tags.map((tag) => (
-                            <span key={tag} className="text-[9px] font-black tracking-wide bg-zinc-950/60 border border-white/5 backdrop-blur-sm px-2 py-0.5 rounded-md text-zinc-300">
+                            <span key={tag} className="text-[9px] font-black tracking-widest uppercase bg-zinc-950/80 border border-white/10 backdrop-blur-sm px-2 py-0.5 rounded-md text-zinc-300">
                               {tag}
                             </span>
                           ))}
+                        </div>
+
+                        {/* Pulsing Equalizer on Image Hover */}
+                        <div className="absolute bottom-4 right-4 bg-zinc-950/85 border border-white/10 backdrop-blur-md p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="eq-container">
+                            <div className="eq-bar" />
+                            <div className="eq-bar" />
+                            <div className="eq-bar" />
+                            <div className="eq-bar" />
+                          </div>
                         </div>
                       </div>
 
@@ -500,25 +512,25 @@ export default function LifestyleLandingPage() {
                         <div className="space-y-2">
                           
                           {/* Rating and price row */}
-                          <div className="flex justify-between items-center">
-                            <span className="text-[10px] font-bold text-zinc-500">★ {event.rating} rating</span>
-                            <span className="text-xs font-black text-[#F5F5F0] bg-white/5 px-2 py-1 rounded-md border border-white/5">
+                          <div className="flex justify-between items-center text-xs font-semibold">
+                            <span className="text-[10px] font-bold text-zinc-400">★ {event.rating} rating</span>
+                            <span className="text-xs font-black text-white bg-white/5 px-2 py-1 rounded-md border border-white/5">
                               {event.price}
                             </span>
                           </div>
 
-                          <h4 className="font-black text-white text-base leading-tight group-hover:text-[#F5F5F0] transition-colors line-clamp-1">
+                          <h4 className="font-black text-white text-base leading-tight group-hover:text-pink-500 transition-colors line-clamp-1">
                             {event.title}
                           </h4>
                           
                           {/* Date and Location info */}
                           <div className="space-y-1 text-zinc-400 text-xs font-semibold">
-                            <p className="flex items-center gap-1.5">
-                              <Calendar size={12} className="text-zinc-500" />
+                            <p className="flex items-center gap-1.5 bg-white/5 px-2 py-0.5 rounded w-fit">
+                              <Calendar size={11} className="text-pink-500" />
                               <span className="truncate">{event.date.split('•')[0]}</span>
                             </p>
-                            <p className="flex items-center gap-1.5">
-                              <MapPin size={12} className="text-zinc-500" />
+                            <p className="flex items-center gap-1.5 bg-white/5 px-2 py-0.5 rounded w-fit">
+                              <MapPin size={11} className="text-cyan-400" />
                               <span className="truncate">{event.location.split(',')[1] || event.location}</span>
                             </p>
                           </div>
@@ -529,10 +541,10 @@ export default function LifestyleLandingPage() {
                         <div className="pt-2 border-t border-white/5">
                           <button
                             onClick={() => handleRSVP(event.id)}
-                            className={`w-full py-2.5 rounded-xl text-xs font-black tracking-wide flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                            className={`w-full py-2.5 rounded-xl text-xs font-black tracking-widest uppercase flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
                               isRsvped
-                                ? 'bg-emerald-500 hover:bg-emerald-600 text-white'
-                                : 'bg-white/5 hover:bg-white/10 text-white border border-white/10'
+                                ? 'bg-emerald-500 hover:bg-emerald-650 text-white'
+                                : 'bg-gradient-to-r from-pink-500 to-purple-650 hover:from-pink-600 hover:to-purple-700 text-white shadow-[0_0_12px_rgba(255,0,127,0.2)]'
                             }`}
                           >
                             {isRsvped ? (
@@ -554,11 +566,11 @@ export default function LifestyleLandingPage() {
                 })}
               </motion.div>
             ) : (
-              <div className="text-center py-16 bg-zinc-900/20 rounded-3xl border border-white/5 backdrop-blur-md">
+              <div className="text-center py-16 bg-zinc-950/40 rounded-3xl border border-white/5 backdrop-blur-md">
                 <p className="text-sm font-semibold text-zinc-500">No events found matching &ldquo;{searchQuery}&rdquo;.</p>
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="mt-4 text-xs font-bold text-[#F5F5F0] hover:underline cursor-pointer"
+                  className="mt-4 text-xs font-bold text-pink-500 hover:underline cursor-pointer"
                 >
                   Clear search filters
                 </button>
@@ -569,23 +581,23 @@ export default function LifestyleLandingPage() {
         </section>
 
         {/* Brand Value Section */}
-        <section className="bg-gradient-to-r from-zinc-900/60 to-zinc-950 border border-white/5 p-8 sm:p-12 rounded-[32px] grid grid-cols-1 md:grid-cols-3 gap-8">
+        <section className="bg-gradient-to-r from-zinc-950/60 to-zinc-950 border border-white/5 p-8 sm:p-12 rounded-[32px] grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-2">
-            <div className="h-10 w-10 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-400 flex items-center justify-center shadow-[0_0_8px_rgba(255,0,127,0.2)]">
               <Sparkles size={18} />
             </div>
             <h4 className="font-black text-white text-base">Curated Selection</h4>
             <p className="text-xs text-zinc-400 leading-relaxed font-semibold">We handpick event hosts, local performers, and coordinators to guarantee unique experiences of the highest quality.</p>
           </div>
           <div className="space-y-2">
-            <div className="h-10 w-10 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shadow-[0_0_8px_rgba(0,240,255,0.2)]">
               <Ticket size={18} />
             </div>
             <h4 className="font-black text-white text-base">Instant Check-in</h4>
             <p className="text-xs text-zinc-400 leading-relaxed font-semibold">No paperwork, no printing. Your digital passes are stored securely inside your profile dashboard with unique, fast-scanning QR codes.</p>
           </div>
           <div className="space-y-2">
-            <div className="h-10 w-10 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center shadow-[0_0_8px_rgba(157,0,255,0.2)]">
               <Compass size={18} />
             </div>
             <h4 className="font-black text-white text-base">Community Connection</h4>
@@ -596,20 +608,20 @@ export default function LifestyleLandingPage() {
       </main>
 
       {/* Premium Minimal Dark Mode Footer */}
-      <footer className="border-t border-white/5 bg-zinc-950 py-12 relative z-10 text-xs font-semibold text-zinc-500">
+      <footer className="border-t border-white/5 bg-zinc-950/40 backdrop-blur-md py-12 relative z-10 text-[10px] font-semibold text-zinc-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center space-x-2 text-white font-black text-sm tracking-tighter">
-            <span className="bg-white p-1 rounded-lg text-zinc-950 font-bold flex items-center justify-center">
-              <Sparkles size={12} className="fill-zinc-950" />
+            <span className="bg-gradient-to-tr from-pink-500 to-purple-650 p-1.5 rounded-lg text-white flex items-center justify-center shadow-[0_0_8px_rgba(255,0,127,0.3)]">
+              <Sparkles size={12} className="fill-white" />
             </span>
-            <span>FlashMob Connect</span>
+            <span className="bg-gradient-to-r from-pink-500 to-cyan-400 bg-clip-text text-transparent font-black">FlashMob Connect</span>
           </div>
           
           <div className="flex flex-wrap justify-center gap-6">
-            <Link href="/events" className="hover:text-white transition-colors">Find Events</Link>
-            <Link href="/about" className="hover:text-white transition-colors">Our Guidelines</Link>
-            <Link href="/dashboard" className="hover:text-white transition-colors">Host Console</Link>
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <Link href="/events" className="hover:text-pink-400 transition-colors">Find Events</Link>
+            <Link href="/about" className="hover:text-pink-400 transition-colors">Our Guidelines</Link>
+            <Link href="/dashboard" className="hover:text-pink-400 transition-colors">Host Console</Link>
+            <a href="#" className="hover:text-pink-400 transition-colors">Privacy Policy</a>
           </div>
 
           <p>© 2026 FlashMob Connect. Designed with absolute visual premium aesthetics.</p>
