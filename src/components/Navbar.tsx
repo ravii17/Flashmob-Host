@@ -23,10 +23,18 @@ export default function Navbar() {
   const toast = useToast();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileAboutExpanded, setMobileAboutExpanded] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [avatarDropdownOpen, setAvatarDropdownOpen] = useState(false);
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  // Reset mobile menu sub-sections when drawer is closed
+  useEffect(() => {
+    if (!mobileMenuOpen) {
+      setMobileAboutExpanded(false);
+    }
+  }, [mobileMenuOpen]);
 
   // Command Palette states
   const [searchOpen, setSearchOpen] = useState(false);
@@ -45,7 +53,14 @@ export default function Navbar() {
     { name: 'Explore Events', href: '/events' },
     { name: 'Create Event', href: '/events/create' },
     { name: 'My Events', href: '/dashboard' },
-    { name: 'About', href: '/about' },
+    { 
+      name: 'About', 
+      href: '/about',
+      subLinks: [
+        { name: 'For You', href: '/about?tab=you', description: 'Curated experiences tailored to your interests and location.' },
+        { name: 'Events', href: '/about?tab=events', description: 'Public flashmobs, safety rules, and host coordination details.' }
+      ]
+    },
   ];
 
   const isActive = (path: string) => {
@@ -269,16 +284,94 @@ export default function Navbar() {
           </div>
 
           {/* Center: Desktop Navigation links */}
-          <div className="hidden md:flex items-center space-x-1 bg-white/5 p-1 rounded-full border border-white/5">
+          <div className="hidden md:flex items-center space-x-1 bg-white/5 p-1 rounded-full border border-white/5 z-20">
             {navLinks.map((link, idx) => {
               const active = isActive(link.href);
+              const hasSubLinks = 'subLinks' in link;
+
+              if (hasSubLinks) {
+                return (
+                  <div
+                    key={link.href}
+                    className="relative"
+                    onMouseEnter={() => setHoveredIndex(idx)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
+                    <Link
+                      href={link.href}
+                      className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors duration-205 flex items-center gap-1 cursor-pointer ${
+                        active ? 'text-pink-500 font-bold text-neon-pink' : 'text-zinc-400 hover:text-white'
+                      }`}
+                    >
+                      {/* Sliding Hover Highlight */}
+                      <AnimatePresence>
+                        {hoveredIndex === idx && (
+                          <motion.span
+                            layoutId="navHoverHighlight"
+                            className="absolute inset-0 bg-white/10 rounded-full -z-10"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                          />
+                        )}
+                      </AnimatePresence>
+
+                      {/* Active Page Indicator Underline/Bar */}
+                      {active && (
+                        <motion.span
+                          layoutId="navActiveIndicator"
+                          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-pink-500 rounded-full shadow-[0_0_8px_rgba(255,0,127,0.8)]"
+                          transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                        />
+                      )}
+                      <span>{link.name}</span>
+                      <ChevronDown 
+                        size={11} 
+                        className={`transition-transform duration-200 ${
+                          hoveredIndex === idx ? 'rotate-180 text-pink-500' : 'text-zinc-500'
+                        }`} 
+                      />
+                    </Link>
+
+                    {/* Desktop Hover Submenu Dropdown */}
+                    <AnimatePresence>
+                      {hoveredIndex === idx && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute left-1/2 -translate-x-1/2 mt-2 w-64 rounded-2xl glass-premium border border-white/10 shadow-[0_0_35px_rgba(0,0,0,0.85)] p-2 z-[60] text-white flex flex-col gap-1 pointer-events-auto"
+                        >
+                          {link.subLinks?.map((sub) => (
+                            <Link
+                              key={sub.href}
+                              href={sub.href}
+                              className="group/sub flex flex-col p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/5 transition-all text-left"
+                            >
+                              <span className="text-xs font-bold text-zinc-200 group-hover/sub:text-pink-500 transition-colors">
+                                {sub.name}
+                              </span>
+                              <span className="text-[9px] text-zinc-500 leading-normal font-medium mt-0.5">
+                                {sub.description}
+                              </span>
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   onMouseEnter={() => setHoveredIndex(idx)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors duration-205 ${
+                  className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors duration-205 cursor-pointer ${
                     active ? 'text-pink-500 font-bold text-neon-pink' : 'text-zinc-400 hover:text-white'
                   }`}
                 >
@@ -637,23 +730,81 @@ export default function Navbar() {
             </div>
 
             {/* Links inside drawer */}
-            <div className="flex flex-col space-y-6 my-auto items-center">
-              {navLinks.map((link, idx) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: idx * 0.05 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-2xl font-black text-zinc-300 hover:text-pink-500 transition-colors"
+            <div className="flex flex-col space-y-6 my-auto items-center w-full">
+              {navLinks.map((link, idx) => {
+                const hasSubLinks = 'subLinks' in link;
+
+                if (hasSubLinks) {
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: idx * 0.05 }}
+                      className="flex flex-col items-center space-y-3 w-full"
+                    >
+                      <button
+                        onClick={() => setMobileAboutExpanded(!mobileAboutExpanded)}
+                        className="flex items-center gap-1.5 text-2xl font-black text-zinc-300 hover:text-pink-500 transition-colors cursor-pointer"
+                      >
+                        <span>{link.name}</span>
+                        <ChevronDown 
+                          size={18} 
+                          className={`text-zinc-550 transition-transform duration-200 ${
+                            mobileAboutExpanded ? 'rotate-180 text-pink-500' : ''
+                          }`} 
+                        />
+                      </button>
+                      
+                      <AnimatePresence>
+                        {mobileAboutExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="flex flex-col items-center space-y-3 pt-1 overflow-hidden"
+                          >
+                            <Link
+                              href="/about"
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="text-sm font-black text-zinc-450 hover:text-pink-500 transition-colors"
+                            >
+                              Overview
+                            </Link>
+                            {link.subLinks?.map((sub) => (
+                              <Link
+                                key={sub.href}
+                                href={sub.href}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="text-sm font-black text-zinc-450 hover:text-pink-500 transition-colors"
+                              >
+                                {sub.name}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                }
+
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: idx * 0.05 }}
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-2xl font-black text-zinc-300 hover:text-pink-500 transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
 
             {/* Actions / Info */}
