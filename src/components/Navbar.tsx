@@ -57,8 +57,8 @@ export default function Navbar() {
       name: 'About', 
       href: '/about',
       subLinks: [
-        { name: 'For You', href: '/about?tab=you', description: 'Curated experiences tailored to your interests and location.' },
-        { name: 'Events', href: '/about?tab=events', description: 'Public flashmobs, safety rules, and host coordination details.' }
+        { name: 'For Performers', href: '/about?tab=you', description: 'Find secret events, practice choreography, and join the crowd.' },
+        { name: 'For Hosts', href: '/about?tab=events', description: 'Organize a flashmob, access host guides, and read safety rules.' }
       ]
     },
   ];

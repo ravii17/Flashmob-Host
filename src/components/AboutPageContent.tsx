@@ -155,7 +155,7 @@ export default function AboutPageContent() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-sm sm:text-base text-zinc-400 leading-relaxed max-w-xl mx-auto font-medium"
         >
-          Injecting joy, music, and performance art into everyday life. Our coordination hub helps you align, rehearse, and disperse cleanly.
+          Bringing spontaneous joy, music, and dance to public spaces. FlashMob Connect is a coordination platform that helps you discover secret performances, rehearse in private, and pull off amazing pop-up events.
         </motion.p>
       </section>
 
@@ -177,7 +177,7 @@ export default function AboutPageContent() {
                 />
               )}
               <span className={`relative z-10 transition-colors ${active ? 'text-white' : 'text-zinc-450 hover:text-zinc-200'}`}>
-                {tab === 'you' ? 'About You' : 'About Events'}
+                {tab === 'you' ? 'For Performers' : 'For Hosts'}
               </span>
             </button>
           );
@@ -204,9 +204,9 @@ export default function AboutPageContent() {
                   <Compass size={18} />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="font-black text-white text-sm tracking-wide">Curated Discoveries</h3>
+                  <h3 className="font-black text-white text-sm tracking-wide">Discover Secret Events</h3>
                   <p className="text-zinc-450 text-xs leading-relaxed font-semibold">
-                    Get custom suggestions based on your preferred skill categories—whether you dance, sing, act, or just love to watch from the sidelines.
+                    Find events that match your style—whether you dance, sing, act, or just want to join the crowd and witness the magic.
                   </p>
                 </div>
               </div>
@@ -217,9 +217,9 @@ export default function AboutPageContent() {
                   <Lock size={18} />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="font-black text-white text-sm tracking-wide">Locked Rehearsals</h3>
+                  <h3 className="font-black text-white text-sm tracking-wide">Learn the Choreography</h3>
                   <p className="text-zinc-450 text-xs leading-relaxed font-semibold">
-                    To keep the crowd surprised, the exact map coordinates, practice music, and choreography loops are locked until you RSVP and confirm.
+                    Get the secret details once you RSVP. Rehearsal videos, audio tracks, and exact coordinates are locked to keep the surprise element alive.
                   </p>
                 </div>
               </div>
@@ -230,9 +230,9 @@ export default function AboutPageContent() {
                   <Award size={18} />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="font-black text-white text-sm tracking-wide">Track Your Status</h3>
+                  <h3 className="font-black text-white text-sm tracking-wide">Build Your Rep</h3>
                   <p className="text-zinc-450 text-xs leading-relaxed font-semibold">
-                    Build your performer reputation. Log confirmed attendances, collect event tickets, and earn spontaneous coordination merits.
+                    Earn badges and build your profile by showing up. Log confirmed attendances, unlock special event tickets, and level up your community standing.
                   </p>
                 </div>
               </div>
@@ -250,10 +250,10 @@ export default function AboutPageContent() {
                     <span>Interactive Preview</span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                    Custom Curation Cues
+                    Curate Your Feed
                   </h3>
                   <p className="text-xs text-zinc-400 leading-relaxed font-semibold">
-                    Toggle your interests below to simulate how the FlashMob Connect feed filters events just for you:
+                    Select your interests below to customize your personal feed:
                   </p>
                 </div>
 
@@ -282,7 +282,7 @@ export default function AboutPageContent() {
                 </div>
 
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/5 text-[11px] text-zinc-450 leading-relaxed font-medium">
-                  <strong>How it adapts:</strong> Once logged in, your chosen settings auto-curate your local feed, notifying you first about events that match your capabilities.
+                  <strong>How it works:</strong> Once you sign up, your feed automatically highlights events that match your talents and notifies you when new ones pop up near you.
                 </div>
               </div>
 
@@ -293,7 +293,7 @@ export default function AboutPageContent() {
                     Your Simulated Feed ({matchedEvents.length} Matched)
                   </h4>
                   <span className="text-[9px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded-full border border-cyan-400/20">
-                    Location: India Active
+                    Active in Your Area
                   </span>
                 </div>
 
@@ -371,9 +371,9 @@ export default function AboutPageContent() {
                   <span className="bg-pink-500 text-white text-[8px] font-black tracking-widest uppercase px-2 py-1 rounded-md">
                     Coordinated Takeover
                   </span>
-                  <h4 className="text-base sm:text-lg font-black text-white">The Flashmob Concept</h4>
+                  <h4 className="text-base sm:text-lg font-black text-white">What is a Flashmob?</h4>
                   <p className="text-[10px] text-zinc-300 leading-normal font-medium max-w-sm">
-                    Performers coordinate, act suddenly, freeze or dance in public locations, disrupt the routine with laughter, and blend back into the crowd seamlessly.
+                    A flashmob is a group of people who assemble suddenly in a public place, perform an unusual and seemingly random act (like a dance, choir, or freeze), and then quickly disperse back into the crowd.
                   </p>
                 </div>
               </div>
@@ -386,10 +386,10 @@ export default function AboutPageContent() {
                     <span>How Events Work</span>
                   </h3>
                   <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed font-semibold">
-                    Flashmob Connect serves as the orchestration infrastructure. Hosts post performances, upload instruction assets, and set parameters. Performers RSVP to unlock the guidelines and sync coordinates.
+                    FlashMob Connect makes organizing a flashmob simple. Hosts post event details, upload practice guides (like sheet music or videos), and set a geofence. Performers RSVP to get the secret instructions.
                   </p>
                   <p className="text-zinc-450 text-xs leading-relaxed font-medium">
-                    This keeps the surprise element completely secure from outside media and city passersby until the countdown reaches zero.
+                    This keeps the event a total surprise for spectators and passersby until the performance starts!
                   </p>
                 </div>
 
@@ -417,10 +417,10 @@ export default function AboutPageContent() {
             <div className="bg-zinc-950/40 border border-white/5 rounded-[32px] p-6 sm:p-8 space-y-6 shadow-premium">
               <div className="space-y-1">
                 <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-550">
-                  Organizer Workflow
+                  Organizer Checklist
                 </h4>
                 <h3 className="text-lg sm:text-xl font-black text-white tracking-tight">
-                  Hosting Lifecycle step-by-step
+                  How to Host an Event
                 </h3>
               </div>
 
@@ -498,13 +498,13 @@ export default function AboutPageContent() {
                   <ShieldAlert size={18} />
                 </div>
                 <h3 className="text-lg sm:text-xl font-black text-amber-400 tracking-tight">
-                  Performance Code of Conduct
+                  Community & Safety Rules
                 </h3>
                 <p className="text-xs text-zinc-450 leading-relaxed font-semibold">
-                  Safety and mutual respect are essential to keeping flashmobs positive. Every coordinator and performer must follow our safety check guidelines.
+                  Keeping flashmobs safe, respectful, and positive is our top priority. All hosts and performers must follow these simple community rules.
                 </p>
                 <div className="p-3 bg-zinc-950/40 rounded-xl border border-white/5 text-[9px] text-zinc-500 font-medium">
-                  Click the rules on the right to verify you accept our community conduct standards.
+                  Review the safety checklist below to see how we keep our assemblies safe and legal.
                 </div>
               </div>
 
