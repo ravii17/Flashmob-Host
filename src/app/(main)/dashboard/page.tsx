@@ -138,16 +138,16 @@ export default function DashboardPage() {
   const categories = ['Dance', 'Music', 'Social', 'Fitness', 'Celebration', 'Other'];
 
   return (
-    <div className="space-y-8 pb-16">
+    <div className="space-y-8 pb-16 relative">
       {/* Header Row */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 animate-fade-in">
         <div>
-          <h1 className="text-3xl font-black text-slate-800 tracking-tight">Organizer Dashboard</h1>
-          <p className="text-sm text-slate-500">Manage flashmobs you created and check attendee list coordinate details.</p>
+          <h1 className="text-3xl font-black text-white text-neon-pink tracking-tight uppercase">Organizer Dashboard</h1>
+          <p className="text-xs text-zinc-400 font-semibold mt-1">Manage flashmobs you created and check attendee list coordinate details.</p>
         </div>
         <Link
           href="/events/create"
-          className="flex items-center space-x-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-5 py-3 rounded-xl transition-all duration-200 active:scale-95 shadow-md shadow-blue-500/10 cursor-pointer"
+          className="flex items-center space-x-1.5 bg-gradient-to-r from-pink-500 to-purple-650 hover:from-pink-600 hover:to-purple-700 text-white font-black text-sm px-5 py-3 rounded-xl transition-all duration-200 active:scale-95 shadow-md shadow-pink-500/10 cursor-pointer"
         >
           <Plus size={16} />
           <span>Organize Flashmob</span>
@@ -155,17 +155,17 @@ export default function DashboardPage() {
       </div>
 
       {organizedEvents.length === 0 ? (
-        <div className="text-center py-20 bg-white border border-slate-100 rounded-3xl p-8 shadow-premium space-y-4 max-w-md mx-auto">
-          <div className="h-16 w-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto">
+        <div className="text-center py-20 bg-zinc-950/40 border border-white/5 rounded-3xl p-8 shadow-premium space-y-4 max-w-md mx-auto">
+          <div className="h-16 w-16 bg-pink-500/10 text-pink-400 border border-pink-500/20 rounded-full flex items-center justify-center mx-auto shadow-[0_0_10px_rgba(255,0,127,0.15)]">
             <Users size={28} />
           </div>
-          <h3 className="font-bold text-slate-800 text-lg">No Created Events</h3>
-          <p className="text-sm text-slate-500 leading-relaxed">
+          <h3 className="font-bold text-white text-lg">No Created Events</h3>
+          <p className="text-xs text-zinc-400 leading-relaxed font-semibold">
             You haven&apos;t created any flashmob events yet. Launch your first event to mobilize your local community!
           </p>
           <Link
             href="/events/create"
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-6 py-2.5 rounded-xl transition-all shadow-md active:scale-95"
+            className="inline-block bg-gradient-to-r from-pink-500 to-purple-650 text-white font-black text-xs px-6 py-2.5 rounded-xl transition-all shadow-md active:scale-95 cursor-pointer"
           >
             Create Flashmob
           </Link>
@@ -174,7 +174,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* List of events */}
           <div className="lg:col-span-2 space-y-4">
-            <h2 className="text-lg font-bold text-slate-800 px-2">Your Events ({organizedEvents.length})</h2>
+            <h2 className="text-lg font-bold text-white px-2">Your Events ({organizedEvents.length})</h2>
             <div className="space-y-4">
               {organizedEvents.map((event: any) => {
                 const isSelected = activeEventRoster === event.id;
@@ -188,54 +188,54 @@ export default function DashboardPage() {
                 return (
                   <div
                     key={event.id}
-                    className={`bg-white border rounded-2xl p-5 shadow-premium transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${
-                      isSelected ? 'border-blue-500 ring-2 ring-blue-50' : 'border-slate-100'
+                    className={`bg-zinc-950/40 border rounded-2xl p-5 shadow-premium transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${
+                      isSelected ? 'border-pink-500 ring-2 ring-pink-500/20' : 'border-white/5'
                     }`}
                   >
                     <div className="space-y-2 max-w-md">
                       <div className="flex items-center space-x-2">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#00F0FF] bg-[#00F0FF]/10 border border-[#00F0FF]/20 px-2 py-0.5 rounded-md">
                           {event.category}
                         </span>
-                        <span className="flex items-center space-x-1 text-xs text-slate-400">
+                        <span className="flex items-center space-x-1 text-xs text-zinc-400 font-semibold">
                           <Users size={12} />
                           <span>{event._count.participants} Joined</span>
                         </span>
                       </div>
                       <Link href={`/events/${event.id}`}>
-                        <h3 className="font-bold text-slate-800 text-base hover:text-blue-600 transition-colors line-clamp-1">
+                        <h3 className="font-bold text-white text-base hover:text-pink-500 transition-colors line-clamp-1">
                           {event.title}
                         </h3>
                       </Link>
-                      <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
+                      <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-zinc-450 font-semibold">
                         <span className="flex items-center space-x-1 shrink-0">
-                          <Calendar size={13} />
+                          <Calendar size={13} className="text-pink-500" />
                           <span>{formattedDate}</span>
                         </span>
                         <span className="flex items-center space-x-1 truncate">
-                          <MapPin size={13} />
+                          <MapPin size={13} className="text-cyan-400" />
                           <span className="truncate">{event.location}, {event.city}</span>
                         </span>
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-2 self-end md:self-auto w-full md:w-auto justify-end border-t md:border-t-0 border-slate-50 pt-3 md:pt-0">
+                    <div className="flex items-center space-x-2 self-end md:self-auto w-full md:w-auto justify-end border-t md:border-t-0 border-white/5 pt-3 md:pt-0">
                       <button
                         onClick={() => setActiveEventRoster(isSelected ? null : event.id)}
-                        className="text-xs font-bold px-3 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors cursor-pointer"
+                        className="text-xs font-bold px-3 py-2 rounded-lg border border-white/10 text-zinc-300 hover:bg-white/5 transition-colors cursor-pointer"
                       >
                         {isSelected ? 'Hide Roster' : 'View Roster'}
                       </button>
                       <button
                         onClick={() => openEditModal(event)}
-                        className="p-2 text-slate-400 hover:text-blue-600 rounded-lg hover:bg-blue-50 transition-all cursor-pointer"
+                        className="p-2 text-zinc-400 hover:text-pink-500 rounded-lg hover:bg-white/5 transition-all cursor-pointer"
                         title="Edit Flashmob"
                       >
                         <Edit2 size={16} />
                       </button>
                       <button
                         onClick={() => handleDelete(event.id)}
-                        className="p-2 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50 transition-all cursor-pointer"
+                        className="p-2 text-zinc-400 hover:text-red-500 rounded-lg hover:bg-red-500/10 transition-all cursor-pointer"
                         title="Cancel Flashmob"
                       >
                         <Trash2 size={16} />
@@ -249,26 +249,26 @@ export default function DashboardPage() {
 
           {/* Attendee roster sidebar */}
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-slate-800 px-2">Attendee Roster Details</h2>
+            <h2 className="text-lg font-bold text-white px-2">Attendee Roster Details</h2>
             {activeEventRoster ? (
               (() => {
                 const selectedEvent = organizedEvents.find((e: any) => e.id === activeEventRoster);
                 if (!selectedEvent) return null;
 
                 return (
-                  <div className="bg-white rounded-2xl border border-slate-100 p-5 shadow-premium space-y-4 animate-scale-up">
+                  <div className="bg-zinc-950/40 rounded-2xl border border-white/5 p-5 shadow-premium space-y-4 animate-scale-up text-white">
                     <div>
-                      <h3 className="font-bold text-slate-800 text-sm truncate leading-snug">
+                      <h3 className="font-bold text-white text-sm truncate leading-snug hover:text-pink-500 transition-colors">
                         {selectedEvent.title}
                       </h3>
-                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider mt-0.5">
+                      <p className="text-xs text-zinc-450 font-semibold uppercase tracking-wider mt-0.5">
                         Attendee List ({selectedEvent.participants.length})
                       </p>
                     </div>
 
-                    <div className="space-y-3 max-h-[28rem] overflow-y-auto pr-1 no-scrollbar border-t border-slate-50 pt-4">
+                    <div className="space-y-3 max-h-[28rem] overflow-y-auto pr-1 no-scrollbar border-t border-white/5 pt-4">
                       {selectedEvent.participants.length === 0 ? (
-                        <p className="text-xs text-slate-400 italic text-center py-4">No attendees have joined yet.</p>
+                        <p className="text-xs text-zinc-555 italic text-center py-4">No attendees have joined yet.</p>
                       ) : (
                         selectedEvent.participants.map((participant: any, index: number) => {
                           const joinDate = new Date(participant.joinedAt).toLocaleDateString('en-US', {
@@ -285,21 +285,21 @@ export default function DashboardPage() {
                                     alt={participant.user.name}
                                     className="h-7 w-7 rounded-full object-cover shrink-0"
                                   />
-                               ) : (
-                                  <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-blue-400 to-sky-300 text-white flex items-center justify-center font-bold">
+                                ) : (
+                                  <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-pink-500 to-purple-650 text-white flex items-center justify-center font-bold">
                                     {participant.user.name.charAt(0).toUpperCase()}
                                   </div>
                                 )}
                                 <div>
-                                  <span className="font-bold text-slate-700 block">{participant.user.name}</span>
+                                  <span className="font-bold text-white block">{participant.user.name}</span>
                                   {participant.userId === selectedEvent.organizerId && (
-                                    <span className="text-[8px] font-bold text-blue-600 bg-blue-50 px-1 py-0.2 rounded-sm uppercase tracking-wide">
+                                    <span className="text-[8px] font-bold text-pink-500 bg-pink-500/10 border border-pink-500/25 px-1 py-0.2 rounded-sm uppercase tracking-wide">
                                       Organizer (You)
                                     </span>
                                   )}
                                 </div>
                               </div>
-                              <span className="text-slate-400 font-semibold">{joinDate}</span>
+                              <span className="text-zinc-500 font-semibold">{joinDate}</span>
                             </div>
                           );
                         })
@@ -309,8 +309,8 @@ export default function DashboardPage() {
                 );
               })()
             ) : (
-              <div className="border border-dashed border-slate-200 rounded-2xl p-6 text-center text-slate-400 text-sm py-12 bg-white/40">
-                <Users size={24} className="mx-auto opacity-30 mb-2" />
+              <div className="border border-dashed border-white/5 rounded-2xl p-6 text-center text-zinc-555 text-sm py-12 bg-zinc-950/20">
+                <Users size={24} className="mx-auto text-pink-500/30 mb-2" />
                 Select &quot;View Roster&quot; on an event to inspect its participant profiles.
               </div>
             )}
@@ -320,17 +320,17 @@ export default function DashboardPage() {
 
       {/* Inline Edit Event Modal overlay */}
       {editingEvent && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
-          <div className="bg-white rounded-3xl border border-slate-100 max-w-xl w-full p-6 sm:p-8 shadow-premium space-y-6 animate-scale-up max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
+          <div className="bg-zinc-950/90 rounded-3xl border border-white/10 max-w-xl w-full p-6 sm:p-8 shadow-premium space-y-6 animate-scale-up max-h-[90vh] overflow-y-auto text-white">
             {/* Modal Header */}
-            <div className="flex justify-between items-center border-b border-slate-50 pb-4">
+            <div className="flex justify-between items-center border-b border-white/5 pb-4">
               <div>
-                <h3 className="font-bold text-slate-800 text-lg">Modify Flashmob</h3>
-                <p className="text-xs text-slate-400">Edit details for &quot;{editingEvent.title}&quot;</p>
+                <h3 className="font-bold text-white text-lg text-neon-pink">Modify Flashmob</h3>
+                <p className="text-xs text-zinc-450">Edit details for &quot;{editingEvent.title}&quot;</p>
               </div>
               <button
                 onClick={() => setEditingEvent(null)}
-                className="p-1.5 hover:bg-slate-50 rounded-lg text-slate-400 hover:text-slate-600 transition-all cursor-pointer"
+                className="p-1.5 hover:bg-white/5 rounded-lg text-zinc-400 hover:text-white transition-all cursor-pointer"
               >
                 <X size={20} />
               </button>
@@ -340,36 +340,36 @@ export default function DashboardPage() {
             <form onSubmit={handleUpdate} className="space-y-4">
               {/* Title */}
               <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Title</label>
+                <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">Title</label>
                 <input
                   type="text"
                   required
                   value={editTitle}
                   onChange={(e) => setEditTitle(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-blue-500 focus:outline-hidden text-sm text-slate-800 transition-colors"
+                  className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white transition-colors"
                 />
               </div>
 
               {/* Description */}
               <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Description</label>
+                <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">Description</label>
                 <textarea
                   required
                   rows={4}
                   value={editDesc}
                   onChange={(e) => setEditDesc(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-blue-500 focus:outline-hidden text-sm text-slate-800 transition-colors"
+                  className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white transition-colors"
                 />
               </div>
 
               {/* Category & Max Parts */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Category</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">Category</label>
                   <select
                     value={editCategory}
                     onChange={(e) => setEditCategory(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-blue-500 focus:outline-hidden text-sm text-slate-800 bg-white transition-colors cursor-pointer"
+                    className="w-full px-3 py-2.5 rounded-xl bg-zinc-900 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white cursor-pointer"
                   >
                     {categories.map((cat) => (
                       <option key={cat} value={cat}>
@@ -379,89 +379,89 @@ export default function DashboardPage() {
                   </select>
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Max Performers</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">Max Performers</label>
                   <input
                     type="number"
                     min="0"
                     value={editMaxParticipants}
                     onChange={(e) => setEditMaxParticipants(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-blue-500 focus:outline-hidden text-sm text-slate-800 transition-colors"
+                    className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white transition-colors"
                   />
                 </div>
               </div>
 
               {/* Date */}
               <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Date & Time</label>
+                <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">Date & Time</label>
                 <input
                   type="datetime-local"
                   required
                   value={editDate}
                   onChange={(e) => setEditDate(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-blue-500 focus:outline-hidden text-sm text-slate-800 transition-colors cursor-pointer"
+                  className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white transition-colors cursor-pointer"
                 />
               </div>
 
               {/* Location & City */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">City</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">City</label>
                   <input
                     type="text"
                     required
                     value={editCity}
                     onChange={(e) => setEditCity(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-blue-500 focus:outline-hidden text-sm text-slate-800 transition-colors"
+                    className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white transition-colors"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Exact Spot</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">Exact Spot</label>
                   <input
                     type="text"
                     required
                     value={editLocation}
                     onChange={(e) => setEditLocation(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-blue-500 focus:outline-hidden text-sm text-slate-800 transition-colors"
+                    className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white transition-colors"
                   />
                 </div>
               </div>
 
               {/* Image URL */}
               <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Banner Image URL</label>
+                <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">Banner Image URL</label>
                 <input
                   type="url"
                   value={editImage}
                   onChange={(e) => setEditImage(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-blue-500 focus:outline-hidden text-sm text-slate-800 transition-colors"
+                  className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white transition-colors"
                 />
               </div>
 
               {/* Contact */}
               <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Contact Info</label>
+                <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">Contact Info</label>
                 <input
                   type="text"
                   required
                   value={editContact}
                   onChange={(e) => setEditContact(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-100 hover:border-slate-200 focus:border-blue-500 focus:outline-hidden text-sm text-slate-800 transition-colors"
+                  className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-pink-500/30 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500/25 text-sm text-white transition-colors"
                 />
               </div>
 
               {/* Actions row */}
-              <div className="flex space-x-2 pt-4 border-t border-slate-50 justify-end">
+              <div className="flex space-x-2 pt-4 border-t border-white/5 justify-end">
                 <button
                   type="button"
                   onClick={() => setEditingEvent(null)}
-                  className="px-4 py-2 text-sm font-semibold rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all cursor-pointer"
+                  className="px-4 py-2 text-sm font-semibold rounded-xl border border-white/10 text-zinc-300 hover:bg-white/5 transition-all cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saveLoading}
-                  className="px-6 py-2 text-sm font-semibold rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-sm cursor-pointer flex items-center justify-center min-w-[5.5rem]"
+                  className="px-6 py-2 text-sm font-semibold rounded-xl bg-gradient-to-r from-pink-500 to-purple-650 hover:from-pink-650 hover:to-purple-700 text-white shadow-sm cursor-pointer flex items-center justify-center min-w-[5.5rem]"
                 >
                   {saveLoading ? <Spinner size="sm" className="border-t-white" /> : 'Save Changes'}
                 </button>

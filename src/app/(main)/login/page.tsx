@@ -38,6 +38,9 @@ export default function LoginPage() {
     const res = await login(email, password);
     if (res.success) {
       toast.success('Welcome back!');
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('justLoggedIn', 'true');
+      }
       router.push('/profile');
     } else {
       setError(res.error || 'Invalid email or password');

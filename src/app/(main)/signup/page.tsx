@@ -63,6 +63,9 @@ export default function SignupPage() {
     const res = await signup(name, email, password, instagram);
     if (res.success) {
       toast.success('Registration successful! Welcome to the crew.');
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('justLoggedIn', 'true');
+      }
       router.push('/profile');
     } else {
       setError(res.error || 'Failed to sign up');
