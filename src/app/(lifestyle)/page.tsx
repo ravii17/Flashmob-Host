@@ -621,7 +621,7 @@ export default function LifestyleLandingPage() {
             <Link href="/events" className="hover:text-pink-400 transition-colors">Find Events</Link>
             <Link href="/about" className="hover:text-pink-400 transition-colors">Our Guidelines</Link>
             <Link href="/dashboard" className="hover:text-pink-400 transition-colors">Host Console</Link>
-            <a href="#" className="hover:text-pink-400 transition-colors">Privacy Policy</a>
+            <Link href="/privacy" className="hover:text-pink-400 transition-colors">Privacy Policy</Link>
           </div>
 
           <p>© 2026 FlashMob Connect. Designed with absolute visual premium aesthetics.</p>

@@ -92,7 +92,9 @@ export default function Footer() {
                 <span className="hover:text-purple-400 cursor-pointer transition-colors font-medium">Terms of Service</span>
               </li>
               <li>
-                <span className="hover:text-purple-400 cursor-pointer transition-colors font-medium">Privacy Policy</span>
+                <Link href="/privacy" className="hover:text-purple-400 cursor-pointer transition-colors font-medium">
+                  Privacy Policy
+                </Link>
               </li>
               <li>
                 <span className="hover:text-purple-400 cursor-pointer transition-colors font-medium">Community Standards</span>
