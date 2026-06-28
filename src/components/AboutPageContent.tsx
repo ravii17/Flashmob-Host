@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Sparkles, Calendar, ShieldAlert, Award, Smile, ArrowRight, 
   Activity, MapPin, User, Lock, Compass, CheckCircle2, 
-  Music, Film, Users, Play, BookOpen, CheckSquare
+  Music, Film, Users, Play, BookOpen, CheckSquare,
+  Dumbbell, PartyPopper, Flame
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -546,6 +547,143 @@ export default function AboutPageContent() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Categories Details Section */}
+      <section className="space-y-6 pt-8 border-t border-white/5 relative z-15">
+        <div className="text-center sm:text-left space-y-2">
+          <div className="inline-flex items-center space-x-2 bg-pink-500/10 border border-pink-500/20 text-pink-400 px-3.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wider">
+            <Compass size={11} className="animate-spin-slow" />
+            <span>Platform Sectors</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight uppercase">
+            Explore Category Sectors
+          </h2>
+          <p className="text-xs text-zinc-400 leading-relaxed font-semibold max-w-2xl">
+            FlashMob Connect hosts 5 key categories of spontaneous event assemblies. Get to know what each group represents, their typical setups, and recommendations for organizers and performers.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+          {[
+            {
+              title: 'Dance & Choreography',
+              val: 'Dance',
+              icon: <Flame className="text-pink-500" size={20} />,
+              gradient: 'from-pink-500/5 to-purple-500/5 hover:border-pink-500/30',
+              shadow: 'hover:shadow-[0_0_20px_rgba(255,0,127,0.15)]',
+              desc: 'Coordinated physical movements that range from sudden freeze mobs to high-energy synchronized street routines. Bring rhythm and motion to public arenas.',
+              examples: ['Flash mobs', 'TikTok dance takeovers', 'Silent disco dances', 'Ballroom freezes', 'Retro groove circles'],
+              difficulty: 'All Levels (Simple loops to advanced steps)',
+              tip: 'Upload a YouTube tutorial or practice video so participants can lock in the moves from home!'
+            },
+            {
+              title: 'Music & Choirs',
+              val: 'Music',
+              icon: <Music className="text-cyan-400" size={20} />,
+              gradient: 'from-cyan-500/5 to-blue-500/5 hover:border-cyan-500/30',
+              shadow: 'hover:shadow-[0_0_20px_rgba(0,240,255,0.15)]',
+              desc: 'Sudden, acoustic live performances and secret choral harmonies. Fill the streets with vocal energy or surprise acoustic instrument jam sessions.',
+              examples: ['Acapella choir surprise', 'Acoustic guitar ensembles', 'Brass band takeovers', 'Synchronized public humming'],
+              difficulty: 'Easy to High (Acoustic playing or multi-part harmonies)',
+              tip: 'Provide distinct sheet music or audio track parts (soprano, alto, tenor) for singers to practice ahead of time.'
+            },
+            {
+              title: 'Social & Meetups',
+              val: 'Social',
+              icon: <Users className="text-purple-400" size={20} />,
+              gradient: 'from-purple-500/5 to-pink-500/5 hover:border-purple-500/30',
+              shadow: 'hover:shadow-[0_0_20px_rgba(157,0,255,0.15)]',
+              desc: 'Impromptu assemblies, massive public games, or street stunts aimed at bringing smiles to passersby and connecting local communities.',
+              examples: ['Giant rock-paper-scissors tournaments', 'Synchronized pillow fights', 'Massive bubble-blowing circles'],
+              difficulty: 'No Skill Required (Fun, interactive, and open to all ages)',
+              tip: 'Agree on a simple visual start signal (e.g. opening a bright yellow umbrella) so everyone acts at the exact same second.'
+            },
+            {
+              title: 'Fitness & Sports',
+              val: 'Fitness',
+              icon: <Dumbbell className="text-green-400" size={20} />,
+              gradient: 'from-green-500/5 to-emerald-500/5 hover:border-green-500/30',
+              shadow: 'hover:shadow-[0_0_20px_rgba(16,185,129,0.15)]',
+              desc: 'Sudden athletic challenges or fitness workshops conducted in public parks or plazas, promoting healthy living and shared movement.',
+              examples: ['Plaza yoga loops', 'Synchronized high-intensity interval training (HIIT)', 'Skipping-rope mobs', 'Outdoor aerobics'],
+              difficulty: 'Medium (Requires standard physical stamina and effort)',
+              tip: 'Ensure the public spot chosen has flat, dry ground and enough square footage for everyone to stretch out safely.'
+            },
+            {
+              title: 'Celebrations & Parades',
+              val: 'Celebration',
+              icon: <PartyPopper className="text-amber-400" size={20} />,
+              gradient: 'from-amber-500/5 to-orange-500/5 hover:border-amber-500/30',
+              shadow: 'hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]',
+              desc: 'Festive surprise walks, seasonal costume marches, or colorful assemblies to spread happiness, mark special dates, and create positive spectacles.',
+              examples: ['Neon light night walks', 'Surprise birthday marches', 'Festive costume parades', 'Clean banner reveals'],
+              difficulty: 'Easy (Creative dress code and simple walking coordination)',
+              tip: 'Prioritize cleanliness! Keep props neat and guarantee that all items/costume scraps are completely cleared after dispersing.'
+            }
+          ].map((cat) => (
+            <div
+              key={cat.title}
+              className={`bg-zinc-950/40 border border-white/5 bg-gradient-to-br ${cat.gradient} rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 ${cat.shadow} group hover:-translate-y-0.5`}
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 shrink-0">
+                      {cat.icon}
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-black text-white tracking-wide">
+                        {cat.title}
+                      </h4>
+                      <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">
+                        Category: {cat.val}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-xs text-zinc-350 leading-relaxed font-semibold">
+                  {cat.desc}
+                </p>
+
+                <div className="space-y-2 pt-2 border-t border-white/5">
+                  <div>
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-wider block">Typical Gigs:</span>
+                    <ul className="list-disc list-inside text-[11px] text-zinc-400 pl-1 space-y-0.5">
+                      {cat.examples.map((ex, i) => (
+                        <li key={i} className="leading-relaxed font-medium">{ex}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-wider block">Difficulty Rating:</span>
+                    <p className="text-[11px] text-zinc-400 font-medium">{cat.difficulty}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-white/5 bg-black/20 -mx-6 -mb-6 p-6 rounded-b-3xl">
+                <div className="flex items-start gap-2">
+                  <span className="text-[10px] font-black text-amber-500 bg-amber-500/10 px-1.5 py-0.5 rounded-md uppercase shrink-0">Tip</span>
+                  <p className="text-[10px] text-zinc-450 leading-normal font-semibold">
+                    {cat.tip}
+                  </p>
+                </div>
+                <div className="mt-4 flex items-center justify-between">
+                  <Link
+                    href={`/events?category=${cat.val}`}
+                    className="text-[10px] font-black text-pink-500 hover:text-pink-400 flex items-center gap-1 transition-colors uppercase tracking-wider"
+                  >
+                    <span>View {cat.val} Feed</span>
+                    <ArrowRight size={10} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

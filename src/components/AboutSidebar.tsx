@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, X, Info, HelpCircle, Activity, MapPin, ShieldAlert, Heart, Calendar, ArrowRight } from 'lucide-react';
+import { Sparkles, X, Info, HelpCircle, Activity, MapPin, ShieldAlert, Heart, Calendar, ArrowRight, Dumbbell, PartyPopper, Flame, Music, Users } from 'lucide-react';
 
 export default function AboutSidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -163,6 +163,61 @@ export default function AboutSidebar() {
                         </p>
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                {/* Event Categories */}
+                <div className="space-y-4">
+                  <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest flex items-center gap-1.5">
+                    <Sparkles size={12} className="text-pink-500" />
+                    <span>Event Categories</span>
+                  </h4>
+                  <div className="space-y-3">
+                    {[
+                      {
+                        title: 'Dance & Choreography',
+                        icon: <Flame size={12} className="text-pink-500" />,
+                        desc: 'Synchronized choreographies, freezes, and street dance mobs.',
+                        bg: 'bg-pink-500/5 hover:bg-pink-500/10 hover:border-pink-500/20'
+                      },
+                      {
+                        title: 'Music & Choirs',
+                        icon: <Music size={12} className="text-cyan-400" />,
+                        desc: 'Acapella choruses, live street bands, and acoustic jams.',
+                        bg: 'bg-cyan-500/5 hover:bg-cyan-500/10 hover:border-cyan-500/20'
+                      },
+                      {
+                        title: 'Social & Meetups',
+                        icon: <Users size={12} className="text-purple-400" />,
+                        desc: 'Flash tournaments, street stunts, and massive interactive games.',
+                        bg: 'bg-purple-500/5 hover:bg-purple-500/10 hover:border-purple-500/20'
+                      },
+                      {
+                        title: 'Fitness & Sports',
+                        icon: <Dumbbell size={12} className="text-green-400" />,
+                        desc: 'Sudden park workouts, synchronized yoga, or stamina challenges.',
+                        bg: 'bg-green-500/5 hover:bg-green-500/10 hover:border-green-500/20'
+                      },
+                      {
+                        title: 'Celebrations & Parades',
+                        icon: <PartyPopper size={12} className="text-amber-400" />,
+                        desc: 'Festive costume marches, light parades, and theme reveals.',
+                        bg: 'bg-amber-500/5 hover:bg-amber-500/10 hover:border-amber-500/20'
+                      }
+                    ].map((cat) => (
+                      <div
+                        key={cat.title}
+                        className={`flex items-start gap-3 p-3 rounded-2xl border border-white/5 transition-all duration-300 ${cat.bg}`}
+                      >
+                        <div className="mt-0.5 p-1.5 rounded-lg bg-white/5 border border-white/10 shrink-0">
+                          {cat.icon}
+                        </div>
+                        <div className="space-y-0.5">
+                          <h5 className="text-[11px] font-bold text-white">{cat.title}</h5>
+                          <p className="text-[10px] text-zinc-400 leading-normal">{cat.desc}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
